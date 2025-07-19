@@ -1,0 +1,56 @@
+.header {
+  margin: 32px 40px 0;
+  display: flex;
+  font-family: "CabinetGrotesk", Georgia, serif;
+  font-weight: 700;
+}
+.header__logo {
+  width: 89px;
+  height: 40px;
+  color: #000;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 100%;
+  font-family: "CabinetGroteskBold", Georgia, serif;
+}
+
+.header__dateLoc {
+  font-weight: 700;
+  font-family: "CabinetGroteskBold", Georgia, serif;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 11px 24px 5px;
+}
+
+.header__group {
+  margin-left: auto;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+}
+
+.header__button {
+  width: 135px;
+  height: 24px;
+  margin-right: 20px;
+  padding: none;
+  border: none;
+  letter-spacing: 0;
+  font-size: 20px;
+  font-family: "CabinetGrotesk", Georgia, serif;
+  font-weight: 700;
+  line-height: 24px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.header__profile-name {
+  font-size: 20px;
+}
+
+.header__profile-pic {
+  font-size: 14px;
+  font-weight: 300;
+  width: 40px;
+  height: 40px;
+  margin-left: 12px;
+}

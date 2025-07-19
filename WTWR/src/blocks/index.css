@@ -1,0 +1,13 @@
+@import url(./Header.css);
+@import url(./App.css);
+@font-face {
+  font-family: "CabinetGrotesk";
+  src: url(../vendor/CabinetGrotesk-Regular.otf) format("opentype");
+  font-style: normal;
+}
+
+@font-face {
+  font-family: CabinetGroteskBold;
+  src: url(../vendor/CabinetGrotesk-Bold.otf) format("opentype");
+  font-style: normal;
+}

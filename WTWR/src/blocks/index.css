@@ -1,5 +1,6 @@
 @import url(./Header.css);
 @import url(./App.css);
+@import url(./weatherCard.css);
 @font-face {
   font-family: "CabinetGrotesk";
   src: url(../vendor/CabinetGrotesk-Regular.otf) format("opentype");

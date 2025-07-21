@@ -1,0 +1,12 @@
+.main {
+  font-family: "CabinetGroteskBold", Georgia, serif;
+  color: #000;
+  font-size: 20px;
+}
+
+.main__announce {
+  width: 350px;
+  height: 25px;
+  margin: 40px auto 34px 40px;
+  width: calc(100% - 80px);
+}

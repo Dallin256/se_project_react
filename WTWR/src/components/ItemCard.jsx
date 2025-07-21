@@ -1,4 +1,4 @@
 
 export default function ItemCard(){
-    return 
+    return <template id="itemCard"><div className="itemCard"></div></template>
 }

@@ -1,0 +1,20 @@
+.footer {
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-family: "CabinetGrotesk", Georgia, serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  width: 100%;
+  position: absolute;
+  bottom: 24px;
+}
+
+.footer__name {
+  margin-left: 42px;
+}
+
+.footer__copyright {
+  margin-right: 42px;
+}

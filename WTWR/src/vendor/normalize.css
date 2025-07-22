@@ -174,7 +174,8 @@ textarea {
  */
 
 button,
-input { /* 1 */
+input {
+  /* 1 */
   overflow: visible;
 }
 
@@ -184,7 +185,8 @@ input { /* 1 */
  */
 
 button,
-select { /* 1 */
+select {
+  /* 1 */
   text-transform: none;
 }
 
@@ -279,6 +281,7 @@ textarea {
 
 [type="number"]::-webkit-inner-spin-button,
 [type="number"]::-webkit-outer-spin-button {
+  all: unset;
   height: auto;
 }
 
@@ -306,6 +309,7 @@ textarea {
  */
 
 ::-webkit-file-upload-button {
+  all: unset;
   -webkit-appearance: button; /* 1 */
   font: inherit; /* 2 */
 }

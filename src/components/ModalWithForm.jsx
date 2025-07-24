@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import PopupWithForm from "../util/PopupWithForm";
+import PopupWithForm from "../utils/PopupWithForm";
 import "../blocks/popup.css";
 import ItemCard from "./ItemCard";
 

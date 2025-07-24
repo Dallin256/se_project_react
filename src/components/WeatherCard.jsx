@@ -1,7 +1,7 @@
 import '../blocks/weatherCard.css'
 import React from "react";
 import { useEffect, useState } from "react";
-import {fetchCurrentTemp, fetchCurrentFeel} from '../util/constants'
+import {fetchCurrentTemp, fetchCurrentFeel} from '../utils/constants'
 import cloud from '../assets/cloud.png'
 
 

@@ -5,7 +5,7 @@ import ItemCard from './ItemCard.jsx'
 import React from "react";
 import { useEffect, useState } from "react";
 import '../blocks/ItemCard.css'
-import { fetchCurrentTemp, fetchCurrentFeel, initialCards } from '../util/constants.js'
+import { fetchCurrentTemp, fetchCurrentFeel, initialCards } from '../utils/constants.js'
 import '../blocks/Main.css'
 
 

@@ -54,6 +54,14 @@
   opacity: 30%;
 }
 
+.popup__close-button_w {
+  position: absolute;
+  right: 26px;
+  top: 26px;
+  margin: 0;
+  background-image: url(../assets/x.png);
+}
+
 .popup__close-button:hover {
   opacity: 1;
 }
@@ -167,4 +175,26 @@
 
 .popup__submit_disabled {
   opacity: 30%;
+}
+
+.popup__itemCard {
+  border-radius: 16px;
+  width: 496px;
+  height: 610px;
+  overflow: hidden;
+  background-color: #fff;
+  position: relative;
+}
+
+.popup__itemCard_landscape {
+  width: 670px;
+  height: 368px;
+}
+
+.popup__itemCard-title {
+  margin: 20px 0 12px 32px;
+}
+
+.popup__itemCard-feel {
+  margin: 20px 0 12px 32px;
 }

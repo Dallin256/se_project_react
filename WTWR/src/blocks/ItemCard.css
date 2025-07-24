@@ -17,6 +17,9 @@
 .ItemCard__all {
   display: flex;
   gap: 18px;
+  width: min-content;
+  height: min-content;
+  margin-left: 40px;
 }
 
 .ItemCard__title {
@@ -32,7 +35,7 @@
   width: fit-content;
   height: fit-content;
   background-color: #fff;
-  z-index: 3;
+  z-index: 2;
   position: absolute;
   top: 15px;
   border-radius: 4px;

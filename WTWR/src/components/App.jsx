@@ -14,7 +14,7 @@ export default function App(){
 <Header openAddClothesModal= {openAddClothesModal}/>
 <Main />
 <Footer/>
-<ItemModal/>
+<ItemModal closeAllModals={closeAllModals}/>
 <ModalWithForm isOpen = {activeModal == "openAddClothesModal"} closeAllModals={closeAllModals}/>
 </>
 )

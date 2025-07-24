@@ -13,9 +13,6 @@ useEffect(()=>{
     fetchCurrentTemp().then(setcurrentTemp);
     fetchCurrentFeel().then(setcurrentFeel);
 })
-
-    console.log(currentTemp);
-    console.log(currentFeel);
     return <div className="weatherCard">
         
         

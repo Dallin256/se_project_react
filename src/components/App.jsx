@@ -8,13 +8,13 @@ import ModalWithForm from './ModalWithForm';
 export default function App(){
     const [activeModal, setActiveModal] = useState("");
     function openAddClothesModal(){setActiveModal("openAddClothesModal")};
+    function openItemCardModal(){setActiveModal("openItemCardModal")};
     function closeAllModals(){setActiveModal("")};
     return( 
 <> 
 <Header openAddClothesModal= {openAddClothesModal}/>
-<Main />
+<Main closeAllModals={closeAllModals} />
 <Footer/>
-<ItemModal closeAllModals={closeAllModals}/>
 <ModalWithForm isOpen = {activeModal == "openAddClothesModal"} closeAllModals={closeAllModals}/>
 </>
 )

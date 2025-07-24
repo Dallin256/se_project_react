@@ -1,4 +1,4 @@
-import Api from "../util/API.js";
+import Api from "./API.js";
 const apiKey = "abfc814a879d2e570f686dd7dd0fd6df";
 const defaultCoord = {
   lon: -80.3,

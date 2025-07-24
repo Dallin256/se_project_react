@@ -15,7 +15,6 @@ export default class API {
           return response.json();
         })
         .then((data) => {
-          console.log(data);
           return data;
         })
         .catch((error) => {
@@ -37,5 +36,25 @@ export default class API {
     const data = await this.getInfo();
     let loc = data.name;
     return loc;
+  }
+
+  async getFeel() {
+    const temp = await this.getTemp();
+    let tempFeel = "";
+    if (temp <= 34.9) {
+      tempFeel = "freezing";
+    } else if (temp <= 55.9) {
+      tempFeel = "cold";
+    } else if (temp <= 68.9) {
+      tempFeel = "chilly";
+    } else if (temp <= 83.9) {
+      tempFeel = "warm";
+    } else if (temp <= 91.9) {
+      tempFeel = "hot";
+    } else if (temp >= 92) {
+      tempFeel = "blistering";
+    } else console.log(tempFeel, "error");
+
+    return tempFeel;
   }
 }

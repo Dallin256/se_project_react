@@ -1,4 +1,4 @@
-.popup__background {
+.popup {
   background-color: #0000004d;
   display: flex;
   justify-content: center;
@@ -8,10 +8,12 @@
   position: absolute;
   z-index: 3;
   top: 0;
-  /* visibility: hidden; */
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 1s, opacity 1s ease-in-out 0s;
 }
 
-.popup {
+.popup__block {
   width: 496px;
   height: 486px;
   background-color: #fff;
@@ -23,6 +25,12 @@
   font-size: 16px;
   line-height: 20px;
   font-family: "CabinetGrotesk", Georgia, serif;
+}
+
+.popup_opened {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s ease-in-out 0s;
 }
 
 .popup__header {
@@ -97,7 +105,6 @@
   border-radius: 100%;
   border-color: rgba(0, 0, 0, 0.5);
   display: inline-block;
-  visibility: visible;
   margin-right: 8px;
 }
 

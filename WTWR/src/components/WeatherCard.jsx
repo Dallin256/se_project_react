@@ -1,10 +1,21 @@
 import '../blocks/weatherCard.css'
-import {currentTemp} from '../util/constants'
+import React from "react";
+import { useEffect, useState } from "react";
+import {fetchCurrentTemp, fetchCurrentFeel} from '../util/constants'
 import cloud from '../assets/cloud.png'
 
 
 export default function WeatherCard(){
-   
+   const [currentTemp, setcurrentTemp] = React.useState(null);
+   const [currentFeel, setcurrentFeel] = React.useState(null);
+
+useEffect(()=>{
+    fetchCurrentTemp().then(setcurrentTemp);
+    fetchCurrentFeel().then(setcurrentFeel);
+})
+
+    console.log(currentTemp);
+    console.log(currentFeel);
     return <div className="weatherCard">
         
         

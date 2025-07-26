@@ -23,7 +23,7 @@ export default function Header({ openModal }) {
       </div>
       <div className="header__group">
         <button
-          id="addItemButton"
+          _id="addItemButton"
           className="header__button"
           onClick={() => {
             openModal();

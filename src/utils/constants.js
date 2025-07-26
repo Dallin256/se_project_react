@@ -25,63 +25,63 @@ function fetchCurrentLoc() {
 
 const initialCards = [
   {
-    id: "0",
+    _id: "0",
     url: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09",
     name: "T-Shirt",
     tempType: "hot",
   },
 
   {
-    id: "1",
+    _id: "1",
     url: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Cap.png?etag=f3dad389b22909cafa73cff9f9a3d591",
     name: "Cap",
     tempType: "hot",
   },
 
   {
-    id: "2",
+    _id: "2",
     url: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8",
     name: "Hoodie",
     tempType: "warm",
   },
 
   {
-    id: "3",
+    _id: "3",
     url: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jacket.png?etag=f4bb188deaa25ac84ce2338be2d404ad",
     name: "Jacket",
     tempType: "chilly",
   },
 
   {
-    id: "4",
+    _id: "4",
     url: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sneakers.png?etag=3efeec41c1c78b8afe26859ca7fa7b6f",
     name: "Sneakers",
     tempType: "chilly",
   },
 
   {
-    id: "5",
+    _id: "5",
     url: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
     name: "Coat",
     tempType: "cold",
   },
 
   {
-    id: "6",
+    _id: "6",
     url: tankTop,
     name: "Tank Top",
     tempType: "blistering",
   },
 
   {
-    id: "7",
+    _id: "7",
     url: shorts,
     name: "Shorts",
     tempType: "blistering",
   },
 
   {
-    id: "8",
+    _id: "8",
     url: sandals,
     name: "Sandals",
     tempType: "blistering",

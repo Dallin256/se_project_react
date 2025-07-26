@@ -14,7 +14,7 @@ export default function ModalWithForm({ isOpen, closeAllModals }) {
           closeAllModals();
         }
       }}
-      id="newGarmet"
+      _id="newGarmet"
       className={`popup ${isOpen ? "popup_opened" : ""}`}
       ref={popupRef}
     >

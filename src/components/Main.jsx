@@ -36,7 +36,7 @@ export default function Main({ openItemModal }) {
       <div className="ItemCard__all">
         {filteredCards.map((item) => (
           <ItemCard
-            key={item.id}
+            key={item._id}
             item={item}
             onClick={() => {
               openItemModal(item);

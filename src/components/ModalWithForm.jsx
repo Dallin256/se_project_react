@@ -7,7 +7,6 @@ export default function ModalWithForm({ isOpen, closeAllModals }) {
   const popupRef = useRef(null);
   const popupInstance = useRef(null);
 
-
   return (
     <div
       onClick={(e) => {

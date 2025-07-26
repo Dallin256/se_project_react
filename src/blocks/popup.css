@@ -184,6 +184,8 @@
   overflow: hidden;
   background-color: #fff;
   position: relative;
+  font-family: "CabinetGrotesk", Georgia, serif;
+  font-weight: 700;
 }
 
 .popup__itemCard_landscape {

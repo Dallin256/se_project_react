@@ -5,6 +5,10 @@ const defaultCoord = {
   lat: 33.8,
 };
 
+import shorts from "../assets/shorts.png";
+import tankTop from "../assets/tankTop.png";
+import sandals from "../assets/sandals.png";
+
 const api = new Api(apiKey, defaultCoord);
 
 function fetchCurrentTemp() {
@@ -60,6 +64,27 @@ const initialCards = [
     url: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
     name: "Coat",
     tempType: "cold",
+  },
+
+  {
+    id: "6",
+    url: tankTop,
+    name: "Tank Top",
+    tempType: "blistering",
+  },
+
+  {
+    id: "7",
+    url: shorts,
+    name: "Shorts",
+    tempType: "blistering",
+  },
+
+  {
+    id: "8",
+    url: sandals,
+    name: "Sandals",
+    tempType: "blistering",
   },
 ];
 

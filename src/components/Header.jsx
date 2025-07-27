@@ -2,7 +2,7 @@ import React from "react";
 import "../blocks/Header.css";
 import profileLogo from "../assets/profileLogo.png";
 import { useEffect, useState } from "react";
-import { fetchCurrentLoc } from "../utils/constants";
+import { fetchCurrentLoc } from "../utils/constants.js";
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",

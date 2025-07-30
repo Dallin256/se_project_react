@@ -1,7 +1,5 @@
 import { useEffect, useRef } from "react";
-import PopupWithForm from "../utils/PopupWithForm.js";
 import "../blocks/popup.css";
-import ItemCard from "./ItemCard.jsx";
 
 export default function ModalWithForm({ isOpen, closeAllModals }) {
   const popupRef = useRef(null);

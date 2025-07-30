@@ -20,4 +20,3 @@ export default function WeatherCard() {
     </div>
   );
 }
-// delete this message after the rebuild

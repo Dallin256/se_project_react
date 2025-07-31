@@ -1,11 +1,12 @@
 import Api from "./API.js";
 const apiKey = "abfc814a879d2e570f686dd7dd0fd6df";
 const defaultCoord = {
-  lon: -80.3,
-  lat: 33.8,
+  lon: -80.3871,
+  lat: 33.8884,
 };
 
 import shorts from "../assets/shorts.png";
+import shortShorts from "../assets/shortShorts.png";
 import tankTop from "../assets/tankTop.png";
 import sandals from "../assets/sandals.png";
 
@@ -56,7 +57,7 @@ const initialCards = [
     _id: "4",
     url: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sneakers.png?etag=3efeec41c1c78b8afe26859ca7fa7b6f",
     name: "Sneakers",
-    tempType: "chilly",
+    tempType: "warm",
   },
 
   {
@@ -75,8 +76,8 @@ const initialCards = [
 
   {
     _id: "7",
-    url: shorts,
-    name: "Shorts",
+    url: shortShorts,
+    name: "Short Shorts",
     tempType: "blistering",
   },
 
@@ -85,6 +86,13 @@ const initialCards = [
     url: sandals,
     name: "Sandals",
     tempType: "blistering",
+  },
+
+  {
+    _id: "9",
+    url: shorts,
+    name: "Shorts",
+    tempType: "hot",
   },
 ];
 

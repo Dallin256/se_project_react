@@ -41,17 +41,17 @@ export default class API {
   async getFeel() {
     const temp = await this.getTemp();
     let tempFeel = "";
-    if (temp <= 34.9) {
+    if (temp <= 34) {
       tempFeel = "freezing";
-    } else if (temp <= 55.9) {
+    } else if (temp <= 52.9) {
       tempFeel = "cold";
     } else if (temp <= 68.9) {
       tempFeel = "chilly";
-    } else if (temp <= 83.9) {
+    } else if (temp <= 80.9) {
       tempFeel = "warm";
-    } else if (temp <= 91.9) {
+    } else if (temp <= 94.9) {
       tempFeel = "hot";
-    } else if (temp >= 92) {
+    } else if (temp >= 95) {
       tempFeel = "blistering";
     } else console.log(tempFeel, "error");
 

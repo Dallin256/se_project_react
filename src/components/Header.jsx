@@ -1,20 +1,12 @@
-import React from "react";
 import "../blocks/Header.css";
 import profileLogo from "../assets/profileLogo.png";
-import { useEffect, useState } from "react";
-import { fetchCurrentLoc } from "../utils/constants.js";
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
   day: "numeric",
 });
 
-export default function Header({ openModal }) {
-  const [currentLoc, setLoc] = React.useState(null);
-
-  useEffect(() => {
-    fetchCurrentLoc().then(setLoc);
-  });
+export default function Header({ currentLoc, openModal }) {
   return (
     <header className="header">
       <div className="header__logo">wtwr°</div>
@@ -23,11 +15,10 @@ export default function Header({ openModal }) {
       </div>
       <div className="header__group">
         <button
-          _id="addItemButton"
+          id="addItemButton"
           className="header__button"
           onClick={() => {
             openModal();
-            console.log("clicky");
           }}
         >
           + Add Clothes

@@ -6,5 +6,5 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  base: "https://dallin256.github.io/se_project_react/",
+  base: "/se_project_react/",
 });

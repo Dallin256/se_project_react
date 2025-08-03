@@ -1,35 +1,22 @@
-import { useEffect, useState } from "react";
 import WeatherCard from "./WeatherCard.jsx";
 import ItemCard from "./ItemCard.jsx";
 import "../blocks/ItemCard.css";
-import {
-  fetchCurrentTemp,
-  fetchCurrentFeel,
-  initialCards,
-} from "../utils/constants.js";
+
 import "../blocks/Main.css";
 
-export default function Main({ openItemModal }) {
-  const [currentTemp, setCurrentTemp] = useState(null);
-  const [currentFeel, setCurrentFeel] = useState(null);
-
-  useEffect(() => {
-    fetchCurrentTemp().then(setCurrentTemp);
-    fetchCurrentFeel().then(setCurrentFeel);
-  }, []);
-
+export default function Main({
+  currentFeel,
+  currentTemp,
+  initialCards,
+  openItemModal,
+}) {
   const filteredCards = initialCards.filter(
     (item) => item.tempType === currentFeel
   );
 
-  function openModal(item) {
-    setSelectedItem(item);
-  }
-  console.log("Fetched feel:", currentFeel);
-  console.log("Initial cards:", initialCards);
   return (
     <div className="main">
-      <WeatherCard />
+      <WeatherCard currentFeel={currentFeel} currentTemp={currentTemp} />
       <div className="main main__announce">
         Today is {currentTemp}°F / You may want to wear:
       </div>

@@ -4,6 +4,7 @@ import Footer from "./Footer.jsx";
 import Main from "./Main.jsx";
 import ItemModal from "./ItemModal.jsx";
 import ModalWithForm from "./ModalWithForm.jsx";
+import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.js";
 import {
   initialCards,
   fetchCurrentFeel,
@@ -17,10 +18,16 @@ export default function App() {
   const [currentTemp, setCurrentTemp] = useState(null);
   const [currentFeel, setCurrentFeel] = useState(null);
   const [currentLoc, setLoc] = useState(null);
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [currentUnitChar, setCurrentUnitChar] = useState("F");
+
+  const handleToggleSwitchChange = () => {
+    setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
+  };
 
   useEffect(() => {
     fetchCurrentLoc().then(setLoc);
-  });
+  }, []);
 
   useEffect(() => {
     fetchCurrentTemp().then(setCurrentTemp);
@@ -41,11 +48,13 @@ export default function App() {
   }
 
   return (
-    <>
+    <CurrentTemperatureUnitContext.Provider
+      value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+    >
       <Header currentLoc={currentLoc} openModal={openAddClothesModal} />
       <Main
         currentFeel={currentFeel}
-        currentTemp={currentTemp}
+        currentTemp={currentTemp || [null, null]}
         initialCards={initialCards}
         openItemModal={openItemModal}
       />
@@ -99,6 +108,6 @@ export default function App() {
         isOpen={!!selectedItem}
         closeAllModals={closeAllModals}
       />
-    </>
+    </CurrentTemperatureUnitContext.Provider>
   );
 }

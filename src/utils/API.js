@@ -28,8 +28,10 @@ export default class API {
     const data = await this.getInfo();
     const temp = data.main.temp;
     let fahrenheit = ((temp - 273.15) * 9) / 5 + 32;
+    let celsius = temp - 273.15;
+    celsius = celsius.toFixed(1);
     fahrenheit = fahrenheit.toFixed(1);
-    return fahrenheit;
+    return [fahrenheit, celsius];
   }
 
   async getLoc() {
@@ -39,7 +41,8 @@ export default class API {
   }
 
   async getFeel() {
-    const temp = await this.getTemp();
+    const [fahrenheit, celsius] = await this.getTemp();
+    const temp = fahrenheit;
     let tempFeel = "";
     if (temp <= 34) {
       tempFeel = "freezing";

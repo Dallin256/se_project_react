@@ -1,0 +1,99 @@
+.tempSwitch {
+  position: relative;
+  width: 56px;
+  height: 28px;
+}
+
+.tempSwitch__input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+}
+
+.tempSwitch__input:checked ~ .tempSwitch__circle {
+  left: 28px;
+}
+
+.tempSwitch__input:checked ~ .tempSwitch__letter_c {
+  color: #fff;
+}
+
+.tempSwitch__input:checked ~ .tempSwitch__letter_f {
+  color: #7e7e7e;
+}
+
+.tempSwitch__style {
+  width: 56px;
+  height: 28px;
+  border-radius: 20px;
+  border-color: #7e7e7e;
+  border-width: 2px;
+  border-style: solid;
+  display: flex;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.tempSwitch__style:hover {
+  border-color: #000;
+}
+
+.tempSwitch__style:hover .tempSwitch__circle {
+  width: 30px;
+}
+
+.tempSwitch__circle {
+  border-radius: 20px;
+  background-color: #000;
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  transition-duration: 0.8s;
+  transition-property: left;
+}
+
+.tempSwitch__circle_l {
+  left: 0;
+}
+
+.tempSwitch__circle_r {
+  right: 0;
+}
+
+.tempSwitch__letter {
+  font-family: "Cabinet Grotesk" sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  z-index: 2;
+  position: absolute;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  box-sizing: border-box;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  transition: all 0.8s;
+}
+
+.tempSwitch__letter_blk {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.tempSwitch__letter_f {
+  left: 0px;
+  bottom: 0px;
+}
+
+.tempSwitch__letter_c {
+  right: 0px;
+  bottom: 0px;
+}

@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./Header.jsx";
 import Footer from "./Footer.jsx";
 import Main from "./Main.jsx";
+import Profile from "./Profile.jsx";
 import ItemModal from "./ItemModal.jsx";
 import ModalWithForm from "./ModalWithForm.jsx";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.js";
@@ -48,66 +50,77 @@ export default function App() {
   }
 
   return (
-    <CurrentTemperatureUnitContext.Provider
-      value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-    >
-      <Header currentLoc={currentLoc} openModal={openAddClothesModal} />
-      <Main
-        currentFeel={currentFeel}
-        currentTemp={currentTemp || [null, null]}
-        initialCards={initialCards}
-        openItemModal={openItemModal}
-      />
-      <Footer />
-
-      <ModalWithForm
-        isOpen={isAddClothesOpen}
-        closeAllModals={closeAllModals}
-        titleText={"New Garment"}
-        buttonText={"Add Garment"}
+    <BrowserRouter>
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <label className="popup__input-label">
-          Name
-          <input
-            type="text"
-            placeholder="Name"
-            className="popup__input popup__input-text"
-            required
+        <Header currentLoc={currentLoc} openModal={openAddClothesModal} />
+        <Routes>
+          <Route path="/se_project_react/profile" element={<Profile />} />
+          <Route
+            path="/se_project_react/"
+            element={
+              <Main
+                currentFeel={currentFeel}
+                currentTemp={currentTemp || [null, null]}
+                initialCards={initialCards}
+                openItemModal={openItemModal}
+              />
+            }
           />
-        </label>
-        <label className="popup__input-label">
-          Image
-          <input
-            type="url"
-            placeholder="Image URL"
-            className="popup__input popup__input-text"
-            required
-          />
-        </label>
-        <div className="popup__input-label popup__input-label_list">
-          {["Blistering", "Hot", "Warm", "Chilly", "Cold", "Freezing"].map(
-            (temp) => (
-              <label key={temp} className="popup__list-label">
-                <input
-                  name="temperature"
-                  type="radio"
-                  value={temp.toLowerCase()}
-                  className="popup__list"
-                  required
-                />
-                <span className="popup__list_custom"></span>
-                <div className="popup_label-name">{temp}</div>
-              </label>
-            )
-          )}
-        </div>
-      </ModalWithForm>
+        </Routes>
 
-      <ItemModal
-        item={selectedItem}
-        isOpen={!!selectedItem}
-        closeAllModals={closeAllModals}
-      />
-    </CurrentTemperatureUnitContext.Provider>
+        <Footer />
+
+        <ModalWithForm
+          isOpen={isAddClothesOpen}
+          closeAllModals={closeAllModals}
+          titleText={"New Garment"}
+          buttonText={"Add Garment"}
+        >
+          <label className="popup__input-label">
+            Name
+            <input
+              type="text"
+              placeholder="Name"
+              className="popup__input popup__input-text"
+              required
+            />
+          </label>
+          <label className="popup__input-label">
+            Image
+            <input
+              type="url"
+              placeholder="Image URL"
+              className="popup__input popup__input-text"
+              required
+            />
+          </label>
+          <div className="popup__input-label popup__input-label_list">
+            {["Blistering", "Hot", "Warm", "Chilly", "Cold", "Freezing"].map(
+              (temp) => (
+                <label key={temp} className="popup__list-label">
+                  <input
+                    name="temperature"
+                    type="radio"
+                    value={temp.toLowerCase()}
+                    className="popup__list"
+                    required
+                  />
+                  <span className="popup__list_custom"></span>
+                  <div className="popup_label-name">{temp}</div>
+                </label>
+              )
+            )}
+          </div>
+        </ModalWithForm>
+
+        <ItemModal
+          item={selectedItem}
+          isOpen={!!selectedItem}
+          closeAllModals={closeAllModals}
+        />
+      </CurrentTemperatureUnitContext.Provider>
+    </BrowserRouter>
   );
 }

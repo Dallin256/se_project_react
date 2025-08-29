@@ -3,6 +3,7 @@ import "../blocks/tempSwitch.css";
 import profileLogo from "../assets/profileLogo.png";
 import { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
+import { Link } from "react-router-dom";
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
@@ -50,7 +51,7 @@ export default function Header({ currentLoc, openModal }) {
         >
           + Add Clothes
         </button>
-        <div className="header__profile-name">put Name here</div>
+        <div className="header__profile-name">Terrence Tegegne</div>
         <img
           className="header__profile-pic"
           src={profileLogo}

@@ -11,9 +11,7 @@ export default function Main({
   initialCards,
   openItemModal,
 }) {
-  const { handleToggleSwitchChange, currentTemperatureUnit } = useContext(
-    CurrentTemperatureUnitContext
-  );
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const filteredCards = initialCards.filter(
     (item) => item.tempType === currentFeel
   );

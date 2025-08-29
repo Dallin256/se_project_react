@@ -1,0 +1,14 @@
+.sidebar {
+  width: 385px;
+  margin-top: 64px;
+}
+
+.sidebar__profile-logo {
+  width: 56px;
+  height: 56px;
+}
+.sidebar__header {
+  display: flex;
+  margin-left: 40px;
+  gap: 16px;
+}

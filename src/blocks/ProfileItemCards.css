@@ -1,0 +1,30 @@
+.ProfileItemCards {
+  height: min-content;
+  width: 1024px;
+  margin: 64px 40px 124px 0;
+}
+
+.ProfileItemCards__header {
+  display: flex;
+}
+
+.ProfileItemCards__title {
+  margin: 23px 20px 16px 0;
+}
+
+.ProfileItemCards__button {
+  border: none;
+  background-color: transparent;
+  margin-bottom: 16px;
+  align-items: end;
+  display: flex;
+  opacity: 0.6;
+}
+
+.ProfileItemCards__box {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 20px;
+  padding: 0;
+  justify-content: left;
+}

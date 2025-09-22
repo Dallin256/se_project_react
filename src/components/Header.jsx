@@ -17,7 +17,9 @@ export default function Header({ currentLoc, openModal }) {
 
   return (
     <header className="header">
-      <div className="header__logo">wtwr°</div>
+      <Link className="header__link" to="/se_project_react/">
+        <div className="header__logo">wtwr°</div>
+      </Link>
       <div className="header__dateLoc">
         {currentDate}, {currentLoc}
       </div>
@@ -51,12 +53,18 @@ export default function Header({ currentLoc, openModal }) {
         >
           + Add Clothes
         </button>
-        <div className="header__profile-name">Terrence Tegegne</div>
-        <img
-          className="header__profile-pic"
-          src={profileLogo}
-          alt="Profile Logo Image"
-        />
+
+        <Link className="header__link" to="/se_project_react/profile">
+          <div className="header__profile-name">Terrence Tegegne</div>
+        </Link>
+
+        <Link to="/se_project_react/profile">
+          <img
+            className="header__profile-pic"
+            src={profileLogo}
+            alt="Profile Logo Image"
+          />
+        </Link>
       </div>
     </header>
   );

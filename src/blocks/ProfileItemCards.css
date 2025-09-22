@@ -19,6 +19,11 @@
   align-items: end;
   display: flex;
   opacity: 0.6;
+  cursor: pointer;
+}
+
+.ProfileItemCards__button:hover {
+  opacity: 1;
 }
 
 .ProfileItemCards__box {

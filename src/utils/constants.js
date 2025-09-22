@@ -24,6 +24,10 @@ function fetchCurrentLoc() {
   return api.getLoc();
 }
 
+function fetchCards() {
+  return initialCards;
+}
+
 const initialCards = [
   {
     _id: "0",
@@ -96,4 +100,10 @@ const initialCards = [
   },
 ];
 
-export { initialCards, fetchCurrentTemp, fetchCurrentLoc, fetchCurrentFeel };
+export {
+  initialCards,
+  fetchCurrentTemp,
+  fetchCurrentLoc,
+  fetchCurrentFeel,
+  fetchCards,
+};

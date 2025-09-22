@@ -42,7 +42,7 @@ export default class API {
 
   async getFeel() {
     const [fahrenheit, celsius] = await this.getTemp();
-    const temp = fahrenheit;
+    let temp = fahrenheit;
     let tempFeel = "";
     if (temp <= 34) {
       tempFeel = "freezing";

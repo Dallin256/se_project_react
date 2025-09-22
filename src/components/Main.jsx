@@ -8,13 +8,11 @@ import "../blocks/Main.css";
 export default function Main({
   currentFeel,
   currentTemp,
-  initialCards,
+  cards,
   openItemModal,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  const filteredCards = initialCards.filter(
-    (item) => item.tempType === currentFeel
-  );
+  const filteredCards = cards.filter((item) => item.tempType === currentFeel);
 
   const [fahrenheit, celsius] = currentTemp;
   const unit = currentTemperatureUnit;

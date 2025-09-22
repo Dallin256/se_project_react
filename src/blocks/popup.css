@@ -191,6 +191,7 @@
   position: relative;
   font-family: "CabinetGrotesk", Georgia, serif;
   font-weight: 700;
+  justify-content: center;
 }
 
 .popup__itemCard_landscape {
@@ -204,4 +205,9 @@
 
 .popup__itemCard-feel {
   margin: 20px 0 12px 32px;
+}
+
+.popup__itemCard-image {
+  height: 500px;
+  width: 500px;
 }

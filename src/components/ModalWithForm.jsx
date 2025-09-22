@@ -7,6 +7,7 @@ export default function ModalWithForm({
   isOpen,
   closeAllModals,
   children,
+  submitForm,
 }) {
   const popupRef = useRef(null);
   const popupInstance = useRef(null);
@@ -34,14 +35,17 @@ export default function ModalWithForm({
         </div>
 
         <form
-          onSubmit={() => {
-            console.log("form submitted");
+          onSubmit={(e) => {
+            e.preventDefault();
+            submitForm(e);
             closeAllModals();
           }}
           className="popup__body"
         >
           {children}
-          <button className="popup__submit">{buttonText}</button>
+          <button type="submit" className="popup__submit">
+            {buttonText}
+          </button>
         </form>
       </div>
     </div>

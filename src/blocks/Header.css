@@ -12,6 +12,7 @@
   font-weight: 900;
   line-height: 100%;
   font-family: "CabinetGroteskBold", Georgia, serif;
+  text-decoration: none;
 }
 
 .header__dateLoc {
@@ -54,4 +55,9 @@
   width: 40px;
   height: 40px;
   margin-left: 12px;
+}
+
+.header__link {
+  text-decoration: none;
+  color: inherit;
 }

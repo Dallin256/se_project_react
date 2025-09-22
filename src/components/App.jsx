@@ -5,13 +5,13 @@ import Footer from "./Footer.jsx";
 import Main from "./Main.jsx";
 import Profile from "./Profile.jsx";
 import ItemModal from "./ItemModal.jsx";
-import ModalWithForm from "./ModalWithForm.jsx";
+import AddItemModal from "./AddItemModal.jsx";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.js";
 import {
-  initialCards,
   fetchCurrentFeel,
   fetchCurrentTemp,
   fetchCurrentLoc,
+  fetchCards,
 } from "../utils/constants.js";
 
 export default function App() {
@@ -21,7 +21,7 @@ export default function App() {
   const [currentFeel, setCurrentFeel] = useState(null);
   const [currentLoc, setLoc] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  const [currentUnitChar, setCurrentUnitChar] = useState("F");
+  const [currentCards, setCurrentCards] = useState([]);
 
   const handleToggleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -34,6 +34,10 @@ export default function App() {
   useEffect(() => {
     fetchCurrentTemp().then(setCurrentTemp);
     fetchCurrentFeel().then(setCurrentFeel);
+  }, []);
+
+  useEffect(() => {
+    setCurrentCards(fetchCards);
   }, []);
 
   function openAddClothesModal() {
@@ -49,12 +53,17 @@ export default function App() {
     setSelectedItem(null);
   }
 
+  function handleAddItem(newItem) {
+    setCurrentCards([newItem, ...currentCards]);
+  }
+
   return (
     <BrowserRouter>
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <Header currentLoc={currentLoc} openModal={openAddClothesModal} />
+
         <Routes>
           <Route path="/se_project_react/profile" element={<Profile />} />
           <Route
@@ -63,7 +72,7 @@ export default function App() {
               <Main
                 currentFeel={currentFeel}
                 currentTemp={currentTemp || [null, null]}
-                initialCards={initialCards}
+                cards={currentCards}
                 openItemModal={openItemModal}
               />
             }
@@ -72,48 +81,12 @@ export default function App() {
 
         <Footer />
 
-        <ModalWithForm
+        <AddItemModal
           isOpen={isAddClothesOpen}
+          onAddItem={handleAddItem}
+          onCloseModal={null}
           closeAllModals={closeAllModals}
-          titleText={"New Garment"}
-          buttonText={"Add Garment"}
-        >
-          <label className="popup__input-label">
-            Name
-            <input
-              type="text"
-              placeholder="Name"
-              className="popup__input popup__input-text"
-              required
-            />
-          </label>
-          <label className="popup__input-label">
-            Image
-            <input
-              type="url"
-              placeholder="Image URL"
-              className="popup__input popup__input-text"
-              required
-            />
-          </label>
-          <div className="popup__input-label popup__input-label_list">
-            {["Blistering", "Hot", "Warm", "Chilly", "Cold", "Freezing"].map(
-              (temp) => (
-                <label key={temp} className="popup__list-label">
-                  <input
-                    name="temperature"
-                    type="radio"
-                    value={temp.toLowerCase()}
-                    className="popup__list"
-                    required
-                  />
-                  <span className="popup__list_custom"></span>
-                  <div className="popup_label-name">{temp}</div>
-                </label>
-              )
-            )}
-          </div>
-        </ModalWithForm>
+        ></AddItemModal>
 
         <ItemModal
           item={selectedItem}

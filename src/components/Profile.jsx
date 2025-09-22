@@ -1,5 +1,5 @@
 import Sidebar from "./Sidebar";
-import ProfileCards from "./ProfileCards";
+import ClothesSection from "./ClothesSection";
 import "../blocks/Profile.css";
 import "../blocks/ProfileItemCards.css";
 import "../blocks/Sidebar.css";
@@ -8,7 +8,7 @@ function Profile() {
   return (
     <div className="Profile">
       <Sidebar />
-      <ProfileCards />
+      <ClothesSection />
     </div>
   );
 }

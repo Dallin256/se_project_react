@@ -15,11 +15,11 @@
 }
 
 .ItemCard__all {
-  display: flex;
+  display: grid;
   gap: 18px;
+  margin: 0 40px 0;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   width: min-content;
-  height: min-content;
-  margin-left: 40px;
 }
 
 .ItemCard__title {
@@ -39,4 +39,24 @@
   position: absolute;
   top: 15px;
   border-radius: 4px;
+}
+
+@media (max-width: 1400px) {
+  .ItemCard__all {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 1080px) {
+  .ItemCard__all {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .ItemCard__all {
+    grid-template-columns: 1fr;
+    width: 100%;
+    justify-items: center;
+    margin: 0;
+  }
 }

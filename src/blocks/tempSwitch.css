@@ -65,6 +65,10 @@
   right: 0;
 }
 
+.tempSwitch__circle_r:hover {
+  right: 2px;
+}
+
 .tempSwitch__letter {
   font-family: "Cabinet Grotesk" sans-serif;
   font-weight: 700;

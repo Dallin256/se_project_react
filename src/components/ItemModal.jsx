@@ -1,6 +1,11 @@
 import "../blocks/popup.css";
 
-export default function ItemModal({ item, isOpen, closeAllModals }) {
+export default function ItemModal({
+  item,
+  isOpen,
+  closeAllModals,
+  deleteConfirm,
+}) {
   return (
     <div className={`popup ${isOpen ? "popup_opened" : ""}`}>
       {item && (
@@ -16,6 +21,9 @@ export default function ItemModal({ item, isOpen, closeAllModals }) {
           />
           <p className="popup__itemCard-title">{item.name}</p>
           <p className="popup__itemCard-feel">Weather: {item.tempType}</p>
+          <button onClick={deleteConfirm} className="popup__itemCard-delete">
+            Delete Item
+          </button>
         </div>
       )}
     </div>

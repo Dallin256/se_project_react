@@ -1,0 +1,142 @@
+{
+  "items": [
+    {
+      "_id": 0,
+      "name": "Beanie",
+      "tempType": "cold",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Beanie.png?etag=bc10497cc80fa557f036e94f9999f7b2"
+    },
+    {
+      "_id": 1,
+      "name": "Boot",
+      "tempType": "cold",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Boot.png?etag=0953a2ea59f1c6ebc832fabacdc9c70e"
+    },
+    {
+      "_id": 2,
+      "name": "Cap",
+      "tempType": "hot",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Cap.png?etag=f3dad389b22909cafa73cff9f9a3d591"
+    },
+    {
+      "_id": 3,
+      "name": "Coat",
+      "tempType": "cold",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4"
+    },
+    {
+      "_id": 4,
+      "name": "Dress",
+      "tempType": "warm",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Dress.png?etag=1f9cd32a311ab139cab43494883720bf"
+    },
+    {
+      "_id": 5,
+      "name": "Hoodie",
+      "tempType": "chilly",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8"
+    },
+    {
+      "_id": 6,
+      "name": "Jacket",
+      "tempType": "cold",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jacket.png?etag=f4bb188deaa25ac84ce2338be2d404ad"
+    },
+    {
+      "_id": 7,
+      "name": "Jeans",
+      "tempType": "warm",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jeans.png?etag=58345e8bef1ce5f95ac882e71d309e6c"
+    },
+    {
+      "_id": 8,
+      "name": "Loafers",
+      "tempType": "chilly",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Loafers.png?etag=dc2d6e1ca7b297597406e35c40aef030"
+    },
+    {
+      "_id": 9,
+      "name": "Sandals",
+      "tempType": "hot",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sandals.png?etag=9bea85a77c0306586d2b71a33b626d41"
+    },
+    {
+      "_id": 10,
+      "name": "Scarf",
+      "tempType": "freezing",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Scarf.png?etag=74efbee93810c926b5507e862c6cb76c"
+    },
+    {
+      "_id": 11,
+      "name": "Shorts",
+      "tempType": "hot",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Shorts.png?etag=d728c496643f610de8d8fea92dd915ba"
+    },
+    {
+      "_id": 12,
+      "name": "Skirt",
+      "tempType": "hot",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Skirt.png?etag=27a6bea7e1b63218820d615876fa31d1"
+    },
+    {
+      "_id": 13,
+      "name": "Sneakers",
+      "tempType": "hot",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sneakers.png?etag=3efeec41c1c78b8afe26859ca7fa7b6f"
+    },
+    {
+      "_id": 14,
+      "name": "Sunglasses",
+      "tempType": "blistering",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432"
+    },
+    {
+      "_id": 15,
+      "name": "Sweatshirt",
+      "tempType": "warm",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sweatshirt.png?etag=008a9674757bea2e0bdb31242e364be0"
+    },
+    {
+      "_id": 16,
+      "name": "T-Shirt",
+      "tempType": "hot",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
+    },
+    {
+      "_id": 17,
+      "name": "TankTop",
+      "tempType": "blistering",
+      "url": "/se_project_react/images/tankTop.png"
+    },
+    {
+      "_id": 18,
+      "name": "Coat",
+      "tempType": "freezing",
+      "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4"
+    },
+    {
+      "_id": 19,
+      "name": "FlipFlops",
+      "tempType": "blistering",
+      "url": "/se_project_react/images/sandals.png"
+    },
+    {
+      "_id": 20,
+      "name": "Short Shorts",
+      "tempType": "blistering",
+      "url": "/se_project_react/images/shortShorts.png"
+    },
+    {
+      "_id": 21
+    },
+    {
+      "_id": 22
+    },
+    {
+      "_id": "1758812477912",
+      "name": "Thigh Highs",
+      "url": "https://cdn11.bigcommerce.com/s-9k7zoiw/images/stencil/1280x1280/products/798/7117/pink-white-striped-high-socks-763-2__24267__59827.1739358596.png?c=2",
+      "tempType": "warm"
+    }
+  ]
+}

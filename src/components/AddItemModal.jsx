@@ -1,13 +1,7 @@
 import useForm from "../hooks/useForm";
 import ModalWithForm from "./ModalWithForm";
-import { initialCards } from "../utils/constants";
 
-export default function AddItemModal({
-  isOpen,
-  onAddItem,
-  onCloseModal,
-  closeAllModals,
-}) {
+export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
   const { values, handleChange, handleReset } = useForm({
     name: "",
     url: "",

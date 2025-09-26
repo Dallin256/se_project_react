@@ -211,3 +211,9 @@
   height: 500px;
   width: 500px;
 }
+
+.popup__itemCard-delete {
+  position: absolute;
+  right: 34px;
+  top: 522px;
+}

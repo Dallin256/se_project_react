@@ -16,7 +16,7 @@ export default function ModalWithForm({
     <div
       onClick={(e) => {
         if (e.target == popupRef.current) {
-          closeAllModals();
+          closeAllModals(isOpen);
         }
       }}
       id="newGarmet"

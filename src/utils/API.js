@@ -1,10 +1,11 @@
 export default class API {
-  constructor(apiKey, defaultCoord) {
+  constructor(apiKey, defaultCoord, JSONUrl) {
     this.apiKey = apiKey;
     this.defaultCoord = defaultCoord;
+    this.JSONUrl = JSONUrl;
   }
 
-  async getInfo() {
+  async getWeather() {
     {
       const url = `https://api.openweathermap.org/data/2.5/weather?lat=${this.defaultCoord.lat}&lon=${this.defaultCoord.lon}&appid=${this.apiKey}`;
       return fetch(url)
@@ -25,7 +26,7 @@ export default class API {
   }
 
   async getTemp() {
-    const data = await this.getInfo();
+    const data = await this.getWeather();
     const temp = data.main.temp;
     let fahrenheit = ((temp - 273.15) * 9) / 5 + 32;
     let celsius = temp - 273.15;
@@ -35,7 +36,7 @@ export default class API {
   }
 
   async getLoc() {
-    const data = await this.getInfo();
+    const data = await this.getWeather();
     let loc = data.name;
     return loc;
   }
@@ -50,14 +51,32 @@ export default class API {
       tempFeel = "cold";
     } else if (temp <= 68.9) {
       tempFeel = "chilly";
-    } else if (temp <= 80.9) {
+    } else if (temp <= 79.9) {
       tempFeel = "warm";
-    } else if (temp <= 94.9) {
+    } else if (temp <= 89.9) {
       tempFeel = "hot";
-    } else if (temp >= 95) {
+    } else if (temp >= 90) {
       tempFeel = "blistering";
     } else console.log(tempFeel, "error");
 
     return tempFeel;
+  }
+
+  async addCard(card) {
+    fetch(this.JSONUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      mode: "cors",
+      body: JSON.stringify(card),
+    });
+  }
+
+  async deleteCard(targetCard) {
+    fetch(this.JSONUrl, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      mode: "cors",
+      body: JSON.stringify(targetCard),
+    });
   }
 }

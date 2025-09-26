@@ -5,6 +5,7 @@ import Footer from "./Footer.jsx";
 import Main from "./Main.jsx";
 import Profile from "./Profile.jsx";
 import ItemModal from "./ItemModal.jsx";
+import DeleteConfirmModal from "./DeleteConfirmModal.jsx";
 import AddItemModal from "./AddItemModal.jsx";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.js";
 import {
@@ -12,10 +13,12 @@ import {
   fetchCurrentTemp,
   fetchCurrentLoc,
   fetchCards,
+  api,
 } from "../utils/constants.js";
 
 export default function App() {
   const [isAddClothesOpen, setIsAddClothesOpen] = useState(false);
+  const [isConfirmDeleteOpen, setIsConfimDeleteOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [currentTemp, setCurrentTemp] = useState(null);
   const [currentFeel, setCurrentFeel] = useState(null);
@@ -37,7 +40,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    setCurrentCards(fetchCards);
+    fetchCards().then(setCurrentCards).catch(console.error);
   }, []);
 
   function openAddClothesModal() {
@@ -53,8 +56,23 @@ export default function App() {
     setSelectedItem(null);
   }
 
-  function handleAddItem(newItem) {
-    setCurrentCards([newItem, ...currentCards]);
+  async function handleAddItem(newItem) {
+    const savedItem = await api.addCard(newItem);
+    if (savedItem) {
+      setCurrentCards([savedItem, ...currentCards]);
+    }
+  }
+
+  async function handleRemoveItem(targetItem) {
+    const removedCard = await api.deleteCard(targetItem);
+    if (removedCard) {
+      setCurrentCards();
+    }
+  }
+
+  function deleteConfirm() {
+    setIsConfimDeleteOpen(true);
+    console.log("clicky");
   }
 
   return (
@@ -92,7 +110,13 @@ export default function App() {
           item={selectedItem}
           isOpen={!!selectedItem}
           closeAllModals={closeAllModals}
+          deleteConfirm={deleteConfirm}
         />
+
+        <DeleteConfirmModal
+          isOpen={isConfirmDeleteOpen}
+          closeAllModals={closeAllModals}
+        ></DeleteConfirmModal>
       </CurrentTemperatureUnitContext.Provider>
     </BrowserRouter>
   );

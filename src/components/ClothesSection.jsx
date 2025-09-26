@@ -25,7 +25,7 @@ export default function ClothesSection() {
   }
 
   useEffect(() => {
-    setCurrentCards(fetchCards());
+    fetchCards().then(setCurrentCards).catch(console.error);
   }, []);
 
   return (

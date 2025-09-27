@@ -53,6 +53,7 @@ export default function App() {
 
   function closeAllModals() {
     setIsAddClothesOpen(false);
+    setIsConfimDeleteOpen(false);
     setSelectedItem(null);
   }
 
@@ -72,7 +73,10 @@ export default function App() {
 
   function deleteConfirm() {
     setIsConfimDeleteOpen(true);
-    console.log("clicky");
+  }
+
+  function deleteCancel() {
+    setIsConfimDeleteOpen(false);
   }
 
   return (
@@ -116,6 +120,9 @@ export default function App() {
         <DeleteConfirmModal
           isOpen={isConfirmDeleteOpen}
           closeAllModals={closeAllModals}
+          deleteCancel={deleteCancel}
+          requestDelete={handleRemoveItem}
+          // item={object}
         ></DeleteConfirmModal>
       </CurrentTemperatureUnitContext.Provider>
     </BrowserRouter>

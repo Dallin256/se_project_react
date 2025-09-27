@@ -63,8 +63,10 @@
   background-image: url(../assets/x.webp);
 }
 
-.popup__close-button_w {
-  opacity: 0.4;
+.popup__close-button-d {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .popup__close-button:hover {
@@ -216,4 +218,13 @@
   position: absolute;
   right: 34px;
   top: 522px;
+  border-style: none;
+  background-color: rgba(0, 0, 0, 0);
+  color: #ff4d00;
+  font-weight: 700;
+}
+
+.popup__itemCard-delete:hover {
+  cursor: pointer;
+  opacity: 0.46;
 }

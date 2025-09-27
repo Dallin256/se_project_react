@@ -1,0 +1,45 @@
+.confirmDelete {
+  width: 670px;
+  height: 280px;
+  z-index: 12;
+  background-color: #fff;
+  border-color: rgba(0, 0, 0, 0.5);
+  border-style: solid;
+  border-radius: 20px;
+  border-width: 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "CabinetGrotesk", Georgia, serif;
+  color: #000;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  position: fixed;
+  padding: none;
+}
+
+.confirmDelete__message {
+  margin: 60px 0 0 0;
+  width: 380px;
+  text-align: center;
+}
+
+.confirmDelete__button {
+  border-style: none;
+  background-color: rgba(0, 0, 0, 0);
+  font-family: "CabinetGrotesk", Georgia, serif;
+  width: auto;
+  height: 24px;
+  font-weight: 700;
+}
+.confirmDelete__button:hover {
+  cursor: pointer;
+  opacity: 0.46;
+}
+
+.confirmDelete__buttonConfirm {
+  height: 24px;
+  margin: 40px 0 24px;
+  color: #ff4d00;
+}

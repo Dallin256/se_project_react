@@ -10,7 +10,6 @@ export default function ModalWithForm({
   submitForm,
 }) {
   const popupRef = useRef(null);
-  const popupInstance = useRef(null);
 
   return (
     <div

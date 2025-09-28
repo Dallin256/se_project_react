@@ -85,14 +85,14 @@ export default function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <Header currentLoc={currentLoc} openModal={openAddClothesModal} />
-
         <Routes>
           <Route
-            path="/se_project_react/profile"
+            path="/profile"
             element={<Profile deleteFunction={deleteConfirm} />}
           />
+
           <Route
-            path="/se_project_react/"
+            path="/"
             element={
               <Main
                 currentFeel={currentFeel}

@@ -4,11 +4,11 @@ import "../blocks/Profile.css";
 import "../blocks/ProfileItemCards.css";
 import "../blocks/Sidebar.css";
 
-function Profile() {
+function Profile({ deleteFunction }) {
   return (
     <div className="Profile">
       <Sidebar />
-      <ClothesSection />
+      <ClothesSection deleteConfirm={deleteFunction} />
     </div>
   );
 }

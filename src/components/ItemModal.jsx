@@ -21,7 +21,12 @@ export default function ItemModal({
           />
           <p className="popup__itemCard-title">{item.name}</p>
           <p className="popup__itemCard-feel">Weather: {item.tempType}</p>
-          <button onClick={deleteConfirm} className="popup__itemCard-delete">
+          <button
+            onClick={() => {
+              deleteConfirm(item);
+            }}
+            className="popup__itemCard-delete"
+          >
             Delete Item
           </button>
         </div>

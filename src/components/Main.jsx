@@ -42,7 +42,7 @@ export default function Main({
           <ItemCard
             key={item._id}
             item={item}
-            onClick={() => {
+            clickCard={() => {
               openItemModal(item);
             }}
           />

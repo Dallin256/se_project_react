@@ -65,13 +65,13 @@ export default function App() {
   }
 
   async function handleRemoveItem(targetItem) {
-    const removedCard = await api.deleteCard(targetItem);
-    if (removedCard) {
-      setCurrentCards();
-    }
+    closeAllModals;
+    await api.deleteCard(targetItem);
+    fetchCards().then(setCurrentCards).catch(console.error);
   }
 
-  function deleteConfirm() {
+  function deleteConfirm(item) {
+    setSelectedItem(item);
     setIsConfimDeleteOpen(true);
   }
 
@@ -87,7 +87,10 @@ export default function App() {
         <Header currentLoc={currentLoc} openModal={openAddClothesModal} />
 
         <Routes>
-          <Route path="/se_project_react/profile" element={<Profile />} />
+          <Route
+            path="/se_project_react/profile"
+            element={<Profile deleteFunction={deleteConfirm} />}
+          />
           <Route
             path="/se_project_react/"
             element={
@@ -122,7 +125,7 @@ export default function App() {
           closeAllModals={closeAllModals}
           deleteCancel={deleteCancel}
           requestDelete={handleRemoveItem}
-          // item={object}
+          item={selectedItem}
         ></DeleteConfirmModal>
       </CurrentTemperatureUnitContext.Provider>
     </BrowserRouter>

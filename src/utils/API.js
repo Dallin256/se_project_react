@@ -72,11 +72,10 @@ export default class API {
   }
 
   async deleteCard(targetCard) {
-    fetch(this.JSONUrl, {
+    fetch(`${this.JSONUrl}/${targetCard._id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       mode: "cors",
-      body: JSON.stringify(targetCard),
     });
   }
 }

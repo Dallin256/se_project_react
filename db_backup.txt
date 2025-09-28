@@ -126,12 +126,7 @@
       "tempType": "blistering",
       "url": "/se_project_react/images/shortShorts.png"
     },
-    {
-      "_id": 21
-    },
-    {
-      "_id": 22
-    },
+    
     {
       "_id": "1758812477912",
       "name": "Thigh Highs",

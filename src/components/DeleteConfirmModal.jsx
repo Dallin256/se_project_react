@@ -35,7 +35,7 @@ export default function DeleteConfirmModal({
         <button
           onClick={() => {
             deleteCancel();
-            requestDelete();
+            requestDelete(item);
           }}
           className="confirmDelete__button confirmDelete__buttonConfirm"
         >

@@ -3,7 +3,8 @@ import AddItemModal from "./AddItemModal";
 import ItemCard from "./ItemCard";
 import { useState, useEffect } from "react";
 import ItemModal from "./ItemModal";
-export default function ClothesSection() {
+
+export default function ClothesSection({ deleteConfirm }) {
   const [selectedItem, setSelectedItem] = useState(null);
   function openItemModal(item) {
     setSelectedItem(item);
@@ -40,6 +41,7 @@ export default function ClothesSection() {
         item={selectedItem}
         isOpen={!!selectedItem}
         closeAllModals={closeAllModals}
+        deleteConfirm={deleteConfirm}
       />
 
       <div className="ProfileItemCards">
@@ -59,7 +61,7 @@ export default function ClothesSection() {
             <ItemCard
               key={item._id}
               item={item}
-              onClick={() => {
+              clickCard={() => {
                 openItemModal(item);
               }}
             />

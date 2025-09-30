@@ -5,6 +5,8 @@ import "../blocks/ProfileItemCards.css";
 import "../blocks/Sidebar.css";
 
 function Profile({
+  currentCards,
+  setCurrentCards,
   openItemModal,
   openAddClothesModal,
   closeAllModals,
@@ -15,6 +17,8 @@ function Profile({
     <div className="Profile">
       <Sidebar />
       <ClothesSection
+        currentCards={currentCards}
+        setCurrentCards={setCurrentCards}
         openAddClothesModal={openAddClothesModal}
         closeAllModals={closeAllModals}
         handleAddItem={handleAddItem}

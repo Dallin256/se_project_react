@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import ItemModal from "./ItemModal";
 
 export default function ClothesSection({
+  currentCards,
+  setCurrentCards,
   openItemModal,
   openAddClothesModal,
   handleAddItem,
@@ -13,7 +15,6 @@ export default function ClothesSection({
 }) {
   const [selectedItem, setSelectedItem] = useState(null);
   const [isAddClothesOpen, setIsAddClothesOpen] = useState(false);
-  const [currentCards, setCurrentCards] = useState([]);
 
   function closeAllModals() {
     setIsAddClothesOpen(false);

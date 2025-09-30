@@ -70,14 +70,14 @@ export default function App() {
     setSelectedItem(null);
   }
 
-  //
+  //sends a submitted card to the server and rerenders the cards
   async function handleAddItem(newItem) {
     const savedItem = await api.addCard(newItem);
     if (savedItem) {
       setCurrentCards([savedItem, ...currentCards]);
     }
   }
-
+  //deletes the selected card from the server database and rerenders the cards
   async function handleRemoveItem(targetItem) {
     closeAllModals();
     await api.deleteCard(targetItem);
@@ -85,12 +85,12 @@ export default function App() {
       prevCards.filter((card) => card._id !== targetItem._id)
     );
   }
-
+  //opens the delete confirm window with the data form the card that activated it loaded in
   function deleteConfirm(item) {
     setSelectedItem(item);
     setIsConfimDeleteOpen(true);
   }
-
+  //closes the delete confirm window, and ONLY the delete confirm window
   function deleteCancel() {
     setIsConfimDeleteOpen(false);
   }
@@ -106,6 +106,8 @@ export default function App() {
             path="/profile"
             element={
               <Profile
+                currentCards={currentCards}
+                setCurrentCards={setCurrentCards}
                 openItemModal={openItemModal}
                 openAddClothesModal={openAddClothesModal}
                 closeAllModals={closeAllModals}

@@ -54,6 +54,10 @@
   opacity: 0.3;
 }
 
+.popup__close-button:hover {
+  opacity: 1;
+}
+
 .popup__close-button_w {
   position: absolute;
   right: 26px;
@@ -62,15 +66,14 @@
   opacity: 1;
   background-image: url(../assets/x.webp);
 }
+.popup__close-button_w:hover {
+  opacity: 0.28;
+}
 
 .popup__close-button-d {
   position: absolute;
   right: 0;
   top: 0;
-}
-
-.popup__close-button:hover {
-  opacity: 1;
 }
 
 .popup__body {

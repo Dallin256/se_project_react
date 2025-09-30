@@ -4,17 +4,16 @@ import ItemCard from "./ItemCard";
 import { useState, useEffect } from "react";
 import ItemModal from "./ItemModal";
 
-export default function ClothesSection({ deleteConfirm }) {
+export default function ClothesSection({
+  openItemModal,
+  openAddClothesModal,
+  handleAddItem,
+  closeAllModals,
+  deleteConfirm,
+}) {
   const [selectedItem, setSelectedItem] = useState(null);
-  function openItemModal(item) {
-    setSelectedItem(item);
-  }
-  const [currentCards, setCurrentCards] = useState([]);
-
   const [isAddClothesOpen, setIsAddClothesOpen] = useState(false);
-  function openAddClothesModal() {
-    setIsAddClothesOpen(true);
-  }
+  const [currentCards, setCurrentCards] = useState([]);
 
   function closeAllModals() {
     setIsAddClothesOpen(false);

@@ -104,27 +104,27 @@
     },
     {
       "_id": 17,
-      "name": "TankTop",
-      "tempType": "blistering",
-      "url": "/se_project_react/images/tankTop.png"
-    },
-    {
-      "_id": 18,
       "name": "Coat",
       "tempType": "freezing",
       "url": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4"
     },
     {
+      "_id": 18,
+      "name": "TankTop",
+      "tempType": "blistering",
+      "url": "/images/tankTop.png"
+    },
+    {
       "_id": 19,
       "name": "FlipFlops",
       "tempType": "blistering",
-      "url": "/se_project_react/images/sandals.png"
+      "url": "/images/sandals.png"
     },
     {
       "_id": 20,
       "name": "Short Shorts",
       "tempType": "blistering",
-      "url": "/se_project_react/images/shortShorts.png"
+      "url": "/images/shortShorts.png"
     }
   ]
 }

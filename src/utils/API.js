@@ -69,6 +69,7 @@ export default class API {
       mode: "cors",
       body: JSON.stringify(card),
     });
+    return card;
   }
 
   async deleteCard(targetCard) {
@@ -77,5 +78,6 @@ export default class API {
       headers: { "Content-Type": "application/json" },
       mode: "cors",
     });
+    return null;
   }
 }

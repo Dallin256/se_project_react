@@ -39,7 +39,6 @@
 }
 
 .weatherCard__cloud {
-  size: 100%;
   z-index: 3;
   position: absolute;
   right: -30px;

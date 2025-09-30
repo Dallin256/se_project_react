@@ -51,7 +51,7 @@
   background-repeat: no-repeat;
   background-color: transparent;
   cursor: pointer;
-  opacity: 30%;
+  opacity: 0.3;
 }
 
 .popup__close-button_w {
@@ -177,11 +177,11 @@
 }
 
 .popup__submit:hover {
-  opacity: 60%;
+  opacity: 0.6;
 }
 
 .popup__submit_disabled {
-  opacity: 30%;
+  opacity: 0.3;
 }
 
 .popup__itemCard {

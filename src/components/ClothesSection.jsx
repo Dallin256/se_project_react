@@ -1,7 +1,7 @@
 import { fetchCards } from "../utils/constants";
 import AddItemModal from "./AddItemModal";
 import ItemCard from "./ItemCard";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import ItemModal from "./ItemModal";
 
 export default function ClothesSection({
@@ -12,19 +12,9 @@ export default function ClothesSection({
   handleAddItem,
   closeAllModals,
   deleteConfirm,
+  selectedItem,
+  isAddClothesOpen,
 }) {
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [isAddClothesOpen, setIsAddClothesOpen] = useState(false);
-
-  function closeAllModals() {
-    setIsAddClothesOpen(false);
-    setSelectedItem(null);
-  }
-
-  function handleAddItem(newItem) {
-    setCurrentCards((prevCards) => [newItem, ...prevCards]);
-  }
-
   useEffect(() => {
     fetchCards().then(setCurrentCards).catch(console.error);
   }, []);

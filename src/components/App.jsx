@@ -113,6 +113,8 @@ export default function App() {
                 closeAllModals={closeAllModals}
                 handleAddItem={handleAddItem}
                 deleteFunction={deleteConfirm}
+                selectedItem={selectedItem}
+                isAddClothesOpen={isAddClothesOpen}
               />
             }
           />

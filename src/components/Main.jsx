@@ -17,7 +17,7 @@ export default function Main({
   const [fahrenheit, celsius] = currentTemp;
   const unit = currentTemperatureUnit;
 
-  const setTemp = () => {
+  const getTemp = () => {
     if (currentTemperatureUnit === "F") {
       return fahrenheit;
     } else if (currentTemperatureUnit === "C") {
@@ -26,7 +26,7 @@ export default function Main({
       console.error();
     }
   };
-  const temp = setTemp();
+  const temp = getTemp();
   return (
     <div className="main">
       <WeatherCard

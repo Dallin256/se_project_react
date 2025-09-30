@@ -12,6 +12,8 @@ function Profile({
   closeAllModals,
   handleAddItem,
   deleteFunction,
+  selectedItem,
+  isAddClothesOpen,
 }) {
   return (
     <div className="Profile">
@@ -24,6 +26,8 @@ function Profile({
         handleAddItem={handleAddItem}
         deleteConfirm={deleteFunction}
         openItemModal={openItemModal}
+        selectedItem={selectedItem}
+        isAddClothesOpen={isAddClothesOpen}
       />
     </div>
   );

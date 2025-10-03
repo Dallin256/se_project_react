@@ -11,8 +11,7 @@ export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
   const submitForm = (e) => {
     e.preventDefault();
     const newCard = { _id: Date.now().toString(), ...values };
-    onAddItem(newCard);
-    handleReset();
+    onAddItem(newCard).then(handleReset()).catch(console.error);
   };
   return (
     <ModalWithForm
@@ -47,23 +46,21 @@ export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
         />
       </label>
       <div className="popup__input-label popup__input-label_list">
-        {["Blistering", "Hot", "Warm", "Chilly", "Cold", "Freezing"].map(
-          (temp) => (
-            <label key={temp} className="popup__list-label">
-              <input
-                name="tempType"
-                type="radio"
-                value={temp.toLowerCase()}
-                checked={values.tempType === temp.toLowerCase()}
-                onChange={handleChange}
-                className="popup__list"
-                required
-              />
-              <span className="popup__list_custom"></span>
-              <div className="popup_label-name">{temp}</div>
-            </label>
-          )
-        )}
+        {["Hot", "Warm", "Cold"].map((temp) => (
+          <label key={temp} className="popup__list-label">
+            <input
+              name="tempType"
+              type="radio"
+              value={temp.toLowerCase()}
+              checked={values.tempType === temp.toLowerCase()}
+              onChange={handleChange}
+              className="popup__list"
+              required
+            />
+            <span className="popup__list_custom"></span>
+            <div className="popup_label-name">{temp}</div>
+          </label>
+        ))}
       </div>
     </ModalWithForm>
   );

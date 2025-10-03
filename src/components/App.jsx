@@ -137,7 +137,6 @@ export default function App() {
         <AddItemModal
           isOpen={isAddClothesOpen}
           onAddItem={handleAddItem}
-          onCloseModal={null}
           closeAllModals={closeAllModals}
         ></AddItemModal>
 

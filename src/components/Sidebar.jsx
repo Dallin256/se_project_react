@@ -3,7 +3,11 @@ export default function Sidebar() {
   return (
     <div className="sidebar">
       <div className="sidebar__header">
-        <img className="sidebar__profile-logo" src={profileLogo} />
+        <img
+          alt="Profile Logo Image"
+          className="sidebar__profile-logo"
+          src={profileLogo}
+        />
         <p>Terrence Tegegne</p>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import Api from "./API.js";
+import APIWeather from "./APIWeather.js";
 const apiKey = "abfc814a879d2e570f686dd7dd0fd6df";
 const defaultCoord = {
   lon: -80.3871,
@@ -6,18 +7,19 @@ const defaultCoord = {
 };
 const JSONUrl = "http://localhost:3001/items";
 
-const api = new Api(apiKey, defaultCoord, JSONUrl);
+const api = new Api(JSONUrl);
+const apiWeather = new APIWeather(apiKey, defaultCoord);
 
 function fetchCurrentTemp() {
-  return api.getTemp();
+  return apiWeather.getTemp();
 }
 
 function fetchCurrentFeel() {
-  return api.getFeel();
+  return apiWeather.getFeel();
 }
 
 function fetchCurrentLoc() {
-  return api.getLoc();
+  return apiWeather.getLoc();
 }
 
 async function fetchCards() {
@@ -28,4 +30,11 @@ async function fetchCards() {
   return resp.json();
 }
 
-export { fetchCards, fetchCurrentFeel, fetchCurrentLoc, fetchCurrentTemp, api };
+export {
+  fetchCards,
+  fetchCurrentFeel,
+  fetchCurrentLoc,
+  fetchCurrentTemp,
+  api,
+  apiWeather,
+};

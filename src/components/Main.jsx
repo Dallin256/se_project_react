@@ -29,11 +29,7 @@ export default function Main({
   const temp = getTemp();
   return (
     <div className="main">
-      <WeatherCard
-        currentFeel={currentFeel}
-        currentTemp={temp}
-        currentUnit={currentTemperatureUnit}
-      />
+      <WeatherCard currentFeel={currentFeel} currentTemp={temp} />
       <div className="main main__announce">
         Today is {temp}°{unit} / You may want to wear:
       </div>

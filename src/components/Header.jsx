@@ -1,8 +1,8 @@
-import "../blocks/Header.css";
-import profileLogo from "../assets/profileLogo.png";
-
 import { Link } from "react-router-dom";
-import ToggleSwitch from "./ToggleSwitch";
+
+import "../blocks/Header.css";
+
+import HeaderLogin from "./HeaderProfile";
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
@@ -18,30 +18,7 @@ export default function Header({ currentLoc, openModal }) {
       <div className="header__dateLoc">
         {currentDate}, {currentLoc}
       </div>
-      <div className="header__group">
-        <ToggleSwitch />
-        <button
-          id="addItemButton"
-          className="header__button"
-          onClick={() => {
-            openModal();
-          }}
-        >
-          + Add Clothes
-        </button>
-
-        <Link className="header__link" to="/profile">
-          <div className="header__profile-name">Terrence Tegegne</div>
-        </Link>
-
-        <Link to="/profile">
-          <img
-            className="header__profile-pic"
-            src={profileLogo}
-            alt="Profile Logo Image"
-          />
-        </Link>
-      </div>
+      <HeaderLogin />
     </header>
   );
 }

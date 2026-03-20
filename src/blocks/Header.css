@@ -27,7 +27,13 @@
   margin-left: auto;
   margin-top: auto;
   display: flex;
-  align-items: center;
+  font-family: "CabinetGrotesk", Georgia, serif;
+  position: absolute;
+  right: 40px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  gap: 20px;
 }
 
 .header__button {
@@ -37,16 +43,23 @@
   padding: 0;
   border: none;
   letter-spacing: 0;
-  font-size: 20px;
   font-family: "CabinetGrotesk", Georgia, serif;
   font-weight: 700;
+  font-size: 20px;
   line-height: 24px;
   background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
 }
 
-.header__profile-name {
-  font-size: 20px;
+.header__signUp {
+  margin: 0;
+  width: 100%;
+  text-wrap: nowrap;
+}
+
+.header__signIn {
+  margin: 0;
+  width: 100%;
 }
 
 .header__profile-pic {

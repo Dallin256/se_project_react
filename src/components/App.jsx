@@ -22,6 +22,7 @@ import {
   fetchCards,
   api,
 } from "../utils/constants.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 //app function
 export default function App() {
@@ -32,6 +33,7 @@ export default function App() {
   const [currentFeel, setCurrentFeel] = useState(null); //initiates the current 'feel' varible is for example 'warm'
   const [currentLoc, setLoc] = useState(null); //initiantes the current location varible (uses coordinates)
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F"); //sets up logic to change the temperature unit
+  const [currentUser, handleUserChange] = useState("none");
   const [currentCards, setCurrentCards] = useState([]); //sets logic for the cards
 
   //this checks the current temperature unit when it is fired; and then changes it to the other
@@ -82,7 +84,7 @@ export default function App() {
     closeAllModals();
     await api.deleteCard(targetItem);
     setCurrentCards((prevCards) =>
-      prevCards.filter((card) => card._id !== targetItem._id)
+      prevCards.filter((card) => card._id !== targetItem._id),
     );
   }
   //opens the delete confirm window with the data form the card that activated it loaded in
@@ -100,60 +102,62 @@ export default function App() {
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <Header currentLoc={currentLoc} openModal={openAddClothesModal} />
-        <Routes>
-          <Route
-            path="/profile"
-            element={
-              <Profile
-                currentCards={currentCards}
-                setCurrentCards={setCurrentCards}
-                openItemModal={openItemModal}
-                openAddClothesModal={openAddClothesModal}
-                closeAllModals={closeAllModals}
-                handleAddItem={handleAddItem}
-                deleteFunction={deleteConfirm}
-                selectedItem={selectedItem}
-                isAddClothesOpen={isAddClothesOpen}
-              />
-            }
+        <CurrentUserContext.Provider value={{ currentUser, handleUserChange }}>
+          <Header currentLoc={currentLoc} openModal={openAddClothesModal} />
+          <Routes>
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  currentCards={currentCards}
+                  setCurrentCards={setCurrentCards}
+                  openItemModal={openItemModal}
+                  openAddClothesModal={openAddClothesModal}
+                  closeAllModals={closeAllModals}
+                  handleAddItem={handleAddItem}
+                  deleteFunction={deleteConfirm}
+                  selectedItem={selectedItem}
+                  isAddClothesOpen={isAddClothesOpen}
+                />
+              }
+            />
+
+            <Route
+              path="/"
+              element={
+                <Main
+                  currentFeel={currentFeel}
+                  currentTemp={currentTemp || [null, null]}
+                  cards={currentCards}
+                  openItemModal={openItemModal}
+                />
+              }
+            />
+          </Routes>
+
+          <Footer />
+
+          <AddItemModal
+            isOpen={isAddClothesOpen}
+            onAddItem={handleAddItem}
+            closeAllModals={closeAllModals}
+          ></AddItemModal>
+
+          <ItemModal
+            item={selectedItem}
+            isOpen={!!selectedItem}
+            closeAllModals={closeAllModals}
+            deleteConfirm={deleteConfirm}
           />
 
-          <Route
-            path="/"
-            element={
-              <Main
-                currentFeel={currentFeel}
-                currentTemp={currentTemp || [null, null]}
-                cards={currentCards}
-                openItemModal={openItemModal}
-              />
-            }
-          />
-        </Routes>
-
-        <Footer />
-
-        <AddItemModal
-          isOpen={isAddClothesOpen}
-          onAddItem={handleAddItem}
-          closeAllModals={closeAllModals}
-        ></AddItemModal>
-
-        <ItemModal
-          item={selectedItem}
-          isOpen={!!selectedItem}
-          closeAllModals={closeAllModals}
-          deleteConfirm={deleteConfirm}
-        />
-
-        <DeleteConfirmModal
-          isOpen={isConfirmDeleteOpen}
-          closeAllModals={closeAllModals}
-          deleteCancel={deleteCancel}
-          requestDelete={handleRemoveItem}
-          item={selectedItem}
-        ></DeleteConfirmModal>
+          <DeleteConfirmModal
+            isOpen={isConfirmDeleteOpen}
+            closeAllModals={closeAllModals}
+            deleteCancel={deleteCancel}
+            requestDelete={handleRemoveItem}
+            item={selectedItem}
+          ></DeleteConfirmModal>
+        </CurrentUserContext.Provider>
       </CurrentTemperatureUnitContext.Provider>
     </BrowserRouter>
   );

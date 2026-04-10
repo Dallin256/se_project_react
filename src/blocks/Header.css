@@ -24,6 +24,7 @@
 }
 
 .header__group {
+  align-items: center;
   margin-left: auto;
   margin-top: auto;
   display: flex;
@@ -63,14 +64,20 @@
 }
 
 .header__profile-pic {
+  margin-left: 12px;
   font-size: 14px;
   font-weight: 300;
   width: 40px;
   height: 40px;
-  margin-left: 12px;
+  right: 40px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100%;
 }
 
 .header__link {
   text-decoration: none;
   color: inherit;
+  line-height: 100%;
 }

@@ -1,5 +1,5 @@
 // react imports
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 //component imports
@@ -10,22 +10,28 @@ import Profile from "./Profile.jsx";
 import ItemModal from "./ItemModal.jsx";
 import DeleteConfirmModal from "./DeleteConfirmModal.jsx";
 import AddItemModal from "./AddItemModal.jsx";
+import SignInModal from "./SignInModal";
+import SignUpModal from "./SignUpModal";
 
 //context
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 //constants
 import {
   fetchCurrentFeel,
   fetchCurrentTemp,
   fetchCurrentLoc,
-  fetchCards,
   api,
+  auth,
 } from "../utils/constants.js";
-import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
+
+import { fetchCards } from "../utils/globalFunctions.js";
 
 //app function
 export default function App() {
+  const [isSignInOpen, setIsSignInOpen] = useState(false); //setting default state for sign in
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false); //setting default state for sign up
   const [isAddClothesOpen, setIsAddClothesOpen] = useState(false); //for the add clothes modal
   const [isConfirmDeleteOpen, setIsConfimDeleteOpen] = useState(false); //for the confirm delete modal
   const [selectedItem, setSelectedItem] = useState(null); //sends the item user selects to the item modal
@@ -33,7 +39,8 @@ export default function App() {
   const [currentFeel, setCurrentFeel] = useState(null); //initiates the current 'feel' varible is for example 'warm'
   const [currentLoc, setLoc] = useState(null); //initiantes the current location varible (uses coordinates)
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F"); //sets up logic to change the temperature unit
-  const [currentUser, handleUserChange] = useState("none");
+  const [currentUser, handleUserChange] = useState(null); //for setting current user to display user info
+  const [isLoading, setIsLoading] = useState(true);
   const [currentCards, setCurrentCards] = useState([]); //sets logic for the cards
 
   //this checks the current temperature unit when it is fired; and then changes it to the other
@@ -57,6 +64,37 @@ export default function App() {
     fetchCards().then(setCurrentCards).catch(console.error);
   }, []);
 
+  useEffect(() => {
+    const checkAuth = async () => {
+      setIsLoading(true);
+      try {
+        const token = localStorage.getItem("jwt");
+        if (token) {
+          const user = await auth.getUser(token);
+          handleUserChange(user);
+        }
+      } catch (error) {
+        console.error("Auth check failed:", error);
+        localStorage.removeItem("jwt");
+        handleUserChange(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
+  //opens the Sign Up modal
+  function openSignUpModal() {
+    setIsSignUpOpen(true);
+  }
+
+  //opens the Sign In modal
+  function openSignInModal() {
+    setIsSignInOpen(true);
+  }
+
   //opens the add clothes modal
   function openAddClothesModal() {
     setIsAddClothesOpen(true);
@@ -69,16 +107,39 @@ export default function App() {
   function closeAllModals() {
     setIsAddClothesOpen(false);
     setIsConfimDeleteOpen(false);
+    setIsSignInOpen(false);
+    setIsSignUpOpen(false);
     setSelectedItem(null);
   }
 
-  //sends a submitted card to the server and rerenders the cards
+  //gets info from AddItemModal and uses API.js to post it to the server.
   async function handleAddItem(newItem) {
-    const savedItem = await api.addCard(newItem);
+    const token = localStorage.getItem("jwt");
+    const savedItem = await api.addCard(newItem, token);
+
     if (savedItem) {
       setCurrentCards([savedItem, ...currentCards]);
     }
   }
+
+  async function signInUser(user) {
+    try {
+      const res = await api.signInUser(user);
+      localStorage.setItem("jwt", res.token);
+      const currentUser = auth.getUser(res.token);
+      handleUserChange(currentUser);
+      console.log(currentUser);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function registerNewUser(user) {
+    const token = localStorage.getItem("jwt");
+    api.addUser(user, token).catch(console.error);
+    api.signInUser(user, token).catch(console.error);
+  }
+
   //deletes the selected card from the server database and rerenders the cards
   async function handleRemoveItem(targetItem) {
     closeAllModals();
@@ -99,12 +160,21 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      {/* <CurrentUserContext.Provider value={{ handleSignIn, currentProfile }}> */}
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <CurrentUserContext.Provider value={{ currentUser, handleUserChange }}>
-          <Header currentLoc={currentLoc} openModal={openAddClothesModal} />
+        <CurrentUserContext.Provider
+          value={{ currentUser, handleUserChange, isLoading }}
+        >
+          <Header
+            currentLoc={currentLoc}
+            openSignUpModal={openSignUpModal}
+            openSignInModal={openSignInModal}
+            openItemModal={openAddClothesModal}
+          />
           <Routes>
+            {/* Wrap profile to secure it from unauthorized users */}
             <Route
               path="/profile"
               element={
@@ -156,9 +226,24 @@ export default function App() {
             deleteCancel={deleteCancel}
             requestDelete={handleRemoveItem}
             item={selectedItem}
-          ></DeleteConfirmModal>
+          />
+
+          <SignUpModal
+            altOpen={isSignInOpen}
+            isOpen={isSignUpOpen}
+            submitForm={registerNewUser}
+            closeAllModals={closeAllModals}
+          />
+
+          <SignInModal
+            altOpen={isSignUpOpen}
+            isOpen={isSignInOpen}
+            closeAllModals={closeAllModals}
+            submitForm={signInUser}
+          />
         </CurrentUserContext.Provider>
       </CurrentTemperatureUnitContext.Provider>
+      {/* </CurrentUserContext.Provider> */}
     </BrowserRouter>
   );
 }

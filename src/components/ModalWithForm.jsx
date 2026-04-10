@@ -8,6 +8,7 @@ export default function ModalWithForm({
   closeAllModals,
   children,
   submitForm,
+  secondaryButton,
 }) {
   const popupRef = useRef(null);
 
@@ -42,9 +43,12 @@ export default function ModalWithForm({
           className="popup__body"
         >
           {children}
-          <button type="submit" className="popup__submit">
-            {buttonText}
-          </button>
+          <div>
+            <button type="submit" className="popup__submit">
+              {buttonText}
+            </button>
+            {secondaryButton}
+          </div>
         </form>
       </div>
     </div>

@@ -8,7 +8,7 @@ export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
     tempType: "",
   });
 
-  const submitForm = (e) => {
+  const addCard = (e) => {
     e.preventDefault();
     const newCard = { _id: Date.now().toString(), ...values };
     onAddItem(newCard).then(handleReset()).catch(console.error);
@@ -19,7 +19,7 @@ export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
       closeAllModals={closeAllModals}
       titleText={"New Garment"}
       buttonText={"Add Garment"}
-      submitForm={submitForm}
+      submitForm={addCard}
     >
       <label className="popup__input-label">
         Name

@@ -1,4 +1,4 @@
-import { fetchCards } from "../utils/constants";
+import { fetchCards } from "../utils/globalFunctions";
 import AddItemModal from "./AddItemModal";
 import ItemCard from "./ItemCard";
 import { useEffect } from "react";

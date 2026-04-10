@@ -6,11 +6,14 @@
   width: 100%;
   height: 100%;
   position: fixed;
-  z-index: 3;
+  left: 0;
+  z-index: 4;
   top: 0;
   visibility: hidden;
   opacity: 0;
-  transition: visibility 0s 0.9s, opacity 0.9s ease-in-out;
+  transition:
+    visibility 0s 0.9s,
+    opacity 0.9s ease-in-out;
 }
 
 .popup__block {
@@ -20,17 +23,31 @@
   border-width: 1px;
   border-radius: 20px;
   border-color: rgba(0, 0, 0, 0.3);
-  z-index: 4;
+  z-index: 5;
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
   font-family: "CabinetGrotesk", Georgia, serif;
+  position: fixed;
 }
 
+.popup__block-signUp {
+  height: 456px;
+}
+.popup__block-signIn {
+  height: 304px;
+}
+
+.popup__signIn {
+  width: 496px;
+  height: 304px;
+}
 .popup_opened {
   visibility: visible;
   opacity: 1;
-  transition: visibility 0s 0s, opacity 0.9s ease-in-out;
+  transition:
+    visibility 0s 0s,
+    opacity 0.9s ease-in-out;
 }
 
 .popup__header {
@@ -76,6 +93,18 @@
   top: 0;
 }
 
+.popup__alternateButton {
+  all: unset;
+  margin-left: 12px;
+  width: 80px;
+  height: 40px;
+  text-align: center;
+  opacity: 0.5;
+  size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 .popup__body {
   display: flex;
   flex-direction: column;
@@ -110,6 +139,10 @@
   border-style: solid;
 }
 
+.popup__inputSignUp {
+  padding-top: 8px;
+}
+
 .popup__list {
   visibility: hidden;
   left: 2px;
@@ -126,14 +159,14 @@
   margin-right: 8px;
 }
 
-.popup__list-label:hover {
-  cursor: pointer;
-}
-
 .popup__list-label {
   position: relative;
   display: flex;
   margin-bottom: 8px;
+}
+
+.popup__inputSignUp-label {
+  padding-top: 24px;
 }
 
 .popup__list-label:last-of-type {

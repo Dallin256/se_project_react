@@ -1,13 +1,15 @@
 import Api from "./API.js";
+import Auth from "./auth.js";
 import APIWeather from "./APIWeather.js";
 const apiKey = "abfc814a879d2e570f686dd7dd0fd6df";
 const defaultCoord = {
   lon: -80.3871,
   lat: 33.8884,
 };
-const JSONUrl = "http://localhost:3001/items";
+const JSONUrl = "http://localhost:3001/";
 
 const api = new Api(JSONUrl);
+const auth = new Auth(JSONUrl);
 const apiWeather = new APIWeather(apiKey, defaultCoord);
 
 function fetchCurrentTemp() {
@@ -20,21 +22,18 @@ function fetchCurrentFeel() {
 
 function fetchCurrentLoc() {
   return apiWeather.getLoc();
-}
 
-async function fetchCards() {
-  const resp = await fetch(JSONUrl);
-  if (!resp.ok) {
-    console.error("Card Fetching Error!!!!!");
+  function addCard() {
+    console.log("card add");
   }
-  return resp.json();
 }
 
 export {
-  fetchCards,
   fetchCurrentFeel,
   fetchCurrentLoc,
   fetchCurrentTemp,
   api,
   apiWeather,
+  JSONUrl,
+  auth,
 };

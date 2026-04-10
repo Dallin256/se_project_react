@@ -1,6 +1,9 @@
 export default class API {
   constructor(JSONUrl) {
-    this.JSONUrl = JSONUrl;
+    this.JSONUrlItems = JSONUrl.concat("items");
+    this.JSONUrlSignUp = JSONUrl.concat("signup");
+    this.JSONUrlSignIn = JSONUrl.concat("signin");
+    this.JSONUrlUsers = JSONUrl.concat("users");
   }
 
   async _checkResponse(resp) {
@@ -10,14 +13,42 @@ export default class API {
     throw new Error(`Error: ${resp.status}`);
   }
 
-  async addCard(card) {
-    const response = await fetch(this.JSONUrl, {
+  async addCard(card, token) {
+    const response = await fetch(this.JSONUrlItems, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
       mode: "cors",
       body: JSON.stringify(card),
     });
     return this._checkResponse(response);
+  }
+
+  async addUser(user) {
+    const response = await fetch(this.JSONUrlSignUp, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify(user),
+    });
+    return this._checkResponse(response);
+  }
+
+  async signInUser(user) {
+    const email = user.email;
+    const password = user.password;
+    const resp = await fetch(this.JSONUrlSignIn, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+    return this._checkResponse(resp);
   }
 
   async deleteCard(targetCard) {

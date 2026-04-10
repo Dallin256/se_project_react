@@ -5,13 +5,20 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 import ToggleSwitch from "./ToggleSwitch";
 
-//import { profileLogo } from "..\assets\profileLogo.png";
-
-export default function HeaderLogin() {
-  const { handleSignIn, currentProfile } = useContext(CurrentUserContext);
-  let signedIn = false;
-  !currentProfile ? (signedIn = false) : (signedIn = true);
-  if (signedIn === false) {
+export default function HeaderButtons({
+  openSignUpModal,
+  openItemModal,
+  openSignInModal,
+}) {
+  const { currentUser, isLoading } = useContext(CurrentUserContext);
+  if (isLoading) {
+    return (
+      <div className="header__group">
+        <ToggleSwitch />
+        <p>LOADING</p>
+      </div>
+    );
+  } else if (!currentUser) {
     return (
       <div className="header__group">
         <ToggleSwitch />
@@ -19,7 +26,7 @@ export default function HeaderLogin() {
           id="signUpButton"
           className="header__button header__signUp"
           onClick={() => {
-            console.log("Sign Up");
+            openSignUpModal();
           }}
         >
           Sign Up
@@ -28,7 +35,7 @@ export default function HeaderLogin() {
           id="signInButton"
           className="header__button header__signIn"
           onClick={() => {
-            console.log("Sign In");
+            openSignInModal();
           }}
         >
           Login
@@ -43,20 +50,19 @@ export default function HeaderLogin() {
         id="addItemButton"
         className="header__button"
         onClick={() => {
-          openModal();
+          openItemModal();
         }}
       >
         + Add Clothes
       </button>
 
       <Link className="header__link" to="/profile">
-        <p>Terrence Tegegne</p>
+        <p>{currentUser.name}</p>
       </Link>
-
       <Link to="/profile">
         <img
           className="header__profile-pic"
-          //src={profileLogo}
+          src={currentUser.avatar}
           alt="Profile Logo Image"
         />
       </Link>

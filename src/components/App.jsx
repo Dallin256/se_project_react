@@ -1,5 +1,5 @@
 // react imports
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, act } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 //component imports
@@ -32,13 +32,7 @@ import { fetchCards } from "../utils/globalFunctions.js";
 
 //app function
 export default function App() {
-  //modal set up vvv
-  const [isSignInOpen, setIsSignInOpen] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
-  const [isAddClothesOpen, setIsAddClothesOpen] = useState(false);
-  const [isConfirmDeleteOpen, setIsConfimDeleteOpen] = useState(false);
-  const [isLogOutConfirmOpen, setIsLogOutConfirmOpen] = useState(false);
-  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+  const [activeModal, setActiveModal] = useState(""); //modal state set up
 
   const [selectedItem, setSelectedItem] = useState(null); //sends the item user selects to the item modal
   const [currentTemp, setCurrentTemp] = useState(null); //sets up the temperature varible
@@ -95,42 +89,44 @@ export default function App() {
   //modal opening functions
 
   function openSignUpModal() {
-    setIsSignUpOpen(true);
+    setActiveModal("signUp");
   }
 
   function openSignInModal() {
-    setIsSignInOpen(true);
+    setActiveModal("signIn");
   }
 
   function openEditProfileModal() {
-    setIsEditProfileOpen(true);
+    setActiveModal("editProfile");
   }
 
   function openLogOutModal() {
-    setIsLogOutConfirmOpen(true);
+    setActiveModal("logOut");
   }
 
   function openAddClothesModal() {
-    setIsAddClothesOpen(true);
-  }
-
-  function logOutUser() {
-    handleUserChange(null);
+    setActiveModal("addItemModal");
   }
 
   //opens the item modal based on what item is clicked
   function openItemModal(item) {
     setSelectedItem(item);
+    setActiveModal("itemModal");
+  }
+
+  //opens the delete confirm window with the data form the card that activated it loaded in
+  function deleteConfirm(item) {
+    setSelectedItem(item);
+    setActiveModal("deleteConfirm");
   }
 
   //all modals are set to close in one convenient function
   function closeAllModals() {
-    setIsAddClothesOpen(false);
-    setIsConfimDeleteOpen(false);
-    setIsSignInOpen(false);
-    setIsSignUpOpen(false);
-    setSelectedItem(null);
-    setIsLogOutConfirmOpen(false);
+    setActiveModal("");
+  }
+
+  function logOutUser() {
+    handleUserChange(null);
   }
 
   //gets info from AddItemModal and uses API.js to post it to the server.
@@ -149,9 +145,8 @@ export default function App() {
     try {
       const res = await api.signInUser(user);
       localStorage.setItem("jwt", res.token);
-      const currentUser = auth.getUser(res.token);
+      const currentUser = await auth.getUser(res.token);
       handleUserChange(currentUser);
-      location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -165,20 +160,13 @@ export default function App() {
 
   //deletes the selected card from the server database and rerenders the cards
   async function handleRemoveItem(targetItem) {
+    const token = localStorage.getItem("jwt");
     closeAllModals();
-    await api.deleteCard(targetItem);
+    await api.deleteCard(targetItem, token);
     setCurrentCards((prevCards) =>
       prevCards.filter((card) => card._id !== targetItem._id),
     );
-  }
-  //opens the delete confirm window with the data form the card that activated it loaded in
-  function deleteConfirm(item) {
-    setSelectedItem(item);
-    setIsConfimDeleteOpen(true);
-  }
-  //closes the delete confirm window, and ONLY the delete confirm window
-  function deleteCancel() {
-    setIsConfimDeleteOpen(false);
+    setSelectedItem(null);
   }
 
   function ProtectRoute({ children }) {
@@ -218,14 +206,14 @@ export default function App() {
                     setCurrentCards={setCurrentCards}
                     openItemModal={openItemModal}
                     openAddClothesModal={openAddClothesModal}
-                    closeAllModals={closeAllModals}
+                    openLogOutModal={openLogOutModal}
                     handleAddItem={handleAddItem}
                     deleteFunction={deleteConfirm}
                     selectedItem={selectedItem}
-                    isAddClothesOpen={isAddClothesOpen}
-                    isLogOutConfirmOpen={isLogOutConfirmOpen}
-                    openLogOutModal={openLogOutModal}
+                    isAddClothesOpen={activeModal === "addItemModal"}
+                    isLogOutConfirmOpen={activeModal === "logOut"}
                     logOutUser={logOutUser}
+                    closeAllModals={closeAllModals}
                   />
                 </ProtectRoute>
               }
@@ -247,48 +235,47 @@ export default function App() {
           <Footer />
 
           <EditProfileModal
-            isOpen={isEditProfileOpen}
+            isOpen={activeModal === "editProfile"}
             closeAllModals={closeAllModals}
             submitForm={handleProfilePatch}
           />
 
           <ConfirmLogOutModal
-            isOpen={isLogOutConfirmOpen}
+            isOpen={activeModal === "logOut"}
             closeAllModals={closeAllModals}
             logOut={logOutUser}
           />
 
           <AddItemModal
-            isOpen={isAddClothesOpen}
+            isOpen={activeModal === "addItemModal"}
             onAddItem={handleAddItem}
             closeAllModals={closeAllModals}
           />
 
           <ItemModal
             item={selectedItem}
-            isOpen={!!selectedItem}
+            isOpen={activeModal === "itemModal"}
             closeAllModals={closeAllModals}
             deleteConfirm={deleteConfirm}
           />
 
           <DeleteConfirmModal
-            isOpen={isConfirmDeleteOpen}
+            isOpen={activeModal === "deleteConfirm"}
             closeAllModals={closeAllModals}
-            deleteCancel={deleteCancel}
             requestDelete={handleRemoveItem}
             item={selectedItem}
           />
 
           <SignUpModal
-            altOpen={isSignInOpen}
-            isOpen={isSignUpOpen}
+            altOpen={activeModal === "signIn"}
+            isOpen={activeModal === "signUp"}
             submitForm={registerNewUser}
             closeAllModals={closeAllModals}
           />
 
           <SignInModal
-            altOpen={isSignUpOpen}
-            isOpen={isSignInOpen}
+            altOpen={activeModal === "signUp"}
+            isOpen={activeModal === "signIn"}
             closeAllModals={closeAllModals}
             submitForm={signInUser}
           />

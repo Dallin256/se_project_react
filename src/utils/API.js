@@ -55,10 +55,14 @@ export default class API {
     return this._checkResponse(resp);
   }
 
-  async deleteCard(targetCard) {
+  async deleteCard(targetCard, token) {
     const response = await fetch(`${this.JSONUrlItems}/${targetCard._id}`, {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+
       mode: "cors",
     });
     return this._checkResponse(response);

@@ -5,7 +5,6 @@ import "../blocks/popup.css";
 export default function DeleteConfirmModal({
   isOpen,
   closeAllModals,
-  deleteCancel,
   requestDelete,
   item,
 }) {
@@ -24,7 +23,7 @@ export default function DeleteConfirmModal({
       <div className="confirmDelete">
         <button
           onClick={() => {
-            deleteCancel();
+            closeAllModals();
           }}
           className="popup__close-button popup__close-button-d"
         ></button>
@@ -34,7 +33,7 @@ export default function DeleteConfirmModal({
         </div>
         <button
           onClick={() => {
-            deleteCancel();
+            closeAllModals();
             requestDelete(item);
           }}
           className="confirmDelete__button confirmDelete__buttonConfirm"
@@ -44,7 +43,7 @@ export default function DeleteConfirmModal({
 
         <button
           onClick={() => {
-            deleteCancel();
+            closeAllModals();
           }}
           className="confirmDelete__button"
         >

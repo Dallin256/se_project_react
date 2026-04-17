@@ -15,7 +15,7 @@ export default function ItemModal({
             className="popup__close-button popup__close-button_w"
           />
           <img
-            src={item.url}
+            src={item.imageUrl}
             className="popup__itemCard-image"
             alt={item.name}
           />

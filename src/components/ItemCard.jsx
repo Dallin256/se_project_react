@@ -4,7 +4,7 @@ import React from "react";
 export default function ItemCard({ item, clickCard }) {
   return (
     <div
-      _id={item._id}
+      key={item._id}
       className="ItemCard"
       onClick={() => {
         clickCard(item);

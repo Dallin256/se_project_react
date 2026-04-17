@@ -1,12 +1,11 @@
-import { fetchCards } from "../utils/globalFunctions";
 import AddItemModal from "./AddItemModal";
 import ItemCard from "./ItemCard";
-import { useEffect } from "react";
+
 import ItemModal from "./ItemModal";
 
 export default function ClothesSection({
   currentCards,
-  setCurrentCards,
+
   openItemModal,
   openAddClothesModal,
   handleAddItem,
@@ -15,10 +14,6 @@ export default function ClothesSection({
   selectedItem,
   isAddClothesOpen,
 }) {
-  useEffect(() => {
-    fetchCards().then(setCurrentCards).catch(console.error);
-  }, []);
-
   return (
     <>
       <AddItemModal

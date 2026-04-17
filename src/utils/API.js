@@ -1,3 +1,5 @@
+import { JSONUrl } from "./constants";
+
 export default class API {
   constructor(JSONUrl) {
     this.JSONUrlItems = JSONUrl.concat("items");
@@ -14,6 +16,7 @@ export default class API {
   }
 
   async addCard(card, token) {
+    console.log(card);
     const response = await fetch(this.JSONUrlItems, {
       method: "POST",
       headers: {
@@ -23,6 +26,7 @@ export default class API {
       mode: "cors",
       body: JSON.stringify(card),
     });
+    console.log(JSON.stringify(card));
     return this._checkResponse(response);
   }
 
@@ -52,7 +56,7 @@ export default class API {
   }
 
   async deleteCard(targetCard) {
-    const response = await fetch(`${this.JSONUrl}/${targetCard._id}`, {
+    const response = await fetch(`${this.JSONUrlItems}/${targetCard._id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       mode: "cors",

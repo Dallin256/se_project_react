@@ -12,7 +12,7 @@ export default function Main({
   openItemModal,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
-  const filteredCards = cards.filter((item) => item.tempType === currentFeel);
+  const filteredCards = cards.filter((item) => item.weather === currentFeel);
 
   const [fahrenheit, celsius] = currentTemp;
   const unit = currentTemperatureUnit;

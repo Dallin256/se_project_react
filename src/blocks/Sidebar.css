@@ -1,14 +1,25 @@
 .sidebar {
   width: 385px;
   margin-top: 64px;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar__profile-logo {
   width: 56px;
   height: 56px;
 }
+
 .sidebar__header {
   display: flex;
   margin-left: 40px;
   gap: 16px;
+}
+
+.sidebar__button {
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  margin: 24px 0 8px 40px;
+  text-align: left;
 }

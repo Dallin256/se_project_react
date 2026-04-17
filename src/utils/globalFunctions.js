@@ -1,20 +1,15 @@
 import { JSONUrl } from "./constants";
 
+const itemCards = JSONUrl.concat("items");
+
 async function fetchCards() {
-  const resp = await fetch(JSONUrl);
+  console.log("fetchCards called!");
+  const resp = await fetch(itemCards);
   if (!resp.ok) {
     console.error("Card Fetching Error!!!!!");
   }
   return resp.json();
 }
-
-// async function closeModal(modal) {
-//   modal(false);
-// }
-
-// function openModal(modal) {
-//   modal(true);
-// }
 
 function openOther(altOpen, closeAllModals) {
   closeAllModals();

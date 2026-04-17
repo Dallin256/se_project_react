@@ -3,6 +3,7 @@ import ClothesSection from "./ClothesSection";
 import "../blocks/Profile.css";
 import "../blocks/ProfileItemCards.css";
 import "../blocks/Sidebar.css";
+import ConfirmLogOutModal from "./confirmLogOutModal";
 
 function Profile({
   currentCards,
@@ -14,10 +15,11 @@ function Profile({
   deleteFunction,
   selectedItem,
   isAddClothesOpen,
+  openLogOutModal,
 }) {
   return (
     <div className="Profile">
-      <Sidebar />
+      <Sidebar openLogOutModal={openLogOutModal} />
       <ClothesSection
         currentCards={currentCards}
         setCurrentCards={setCurrentCards}

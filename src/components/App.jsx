@@ -1,6 +1,6 @@
 // react imports
 import { useState, useEffect, useContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 //component imports
 import Header from "./Header.jsx";
@@ -12,6 +12,8 @@ import DeleteConfirmModal from "./DeleteConfirmModal.jsx";
 import AddItemModal from "./AddItemModal.jsx";
 import SignInModal from "./SignInModal";
 import SignUpModal from "./SignUpModal";
+import ConfirmLogOutModal from "./confirmLogOutModal.jsx";
+import EditProfileModal from "./editProfileModal.jsx";
 
 //context
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.js";
@@ -30,15 +32,20 @@ import { fetchCards } from "../utils/globalFunctions.js";
 
 //app function
 export default function App() {
-  const [isSignInOpen, setIsSignInOpen] = useState(false); //setting default state for sign in
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false); //setting default state for sign up
-  const [isAddClothesOpen, setIsAddClothesOpen] = useState(false); //for the add clothes modal
-  const [isConfirmDeleteOpen, setIsConfimDeleteOpen] = useState(false); //for the confirm delete modal
+  //modal set up vvv
+  const [isSignInOpen, setIsSignInOpen] = useState(false);
+  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const [isAddClothesOpen, setIsAddClothesOpen] = useState(false);
+  const [isConfirmDeleteOpen, setIsConfimDeleteOpen] = useState(false);
+  const [isLogOutConfirmOpen, setIsLogOutConfirmOpen] = useState(false);
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+
   const [selectedItem, setSelectedItem] = useState(null); //sends the item user selects to the item modal
   const [currentTemp, setCurrentTemp] = useState(null); //sets up the temperature varible
   const [currentFeel, setCurrentFeel] = useState(null); //initiates the current 'feel' varible is for example 'warm'
   const [currentLoc, setLoc] = useState(null); //initiantes the current location varible (uses coordinates)
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F"); //sets up logic to change the temperature unit
+
   const [currentUser, handleUserChange] = useState(null); //for setting current user to display user info
   const [isLoading, setIsLoading] = useState(true);
   const [currentCards, setCurrentCards] = useState([]); //sets logic for the cards
@@ -85,24 +92,37 @@ export default function App() {
     checkAuth();
   }, []);
 
-  //opens the Sign Up modal
+  //modal opening functions
+
   function openSignUpModal() {
     setIsSignUpOpen(true);
   }
 
-  //opens the Sign In modal
   function openSignInModal() {
     setIsSignInOpen(true);
   }
 
-  //opens the add clothes modal
+  function openEditProfileModal() {
+    setIsEditProfileOpen(true);
+  }
+
+  function openLogOutModal() {
+    setIsLogOutConfirmOpen(true);
+  }
+
   function openAddClothesModal() {
     setIsAddClothesOpen(true);
   }
+
+  function logOutUser() {
+    handleUserChange(null);
+  }
+
   //opens the item modal based on what item is clicked
   function openItemModal(item) {
     setSelectedItem(item);
   }
+
   //all modals are set to close in one convenient function
   function closeAllModals() {
     setIsAddClothesOpen(false);
@@ -110,6 +130,7 @@ export default function App() {
     setIsSignInOpen(false);
     setIsSignUpOpen(false);
     setSelectedItem(null);
+    setIsLogOutConfirmOpen(false);
   }
 
   //gets info from AddItemModal and uses API.js to post it to the server.
@@ -122,13 +143,15 @@ export default function App() {
     }
   }
 
+  function handleProfilePatch(user) {}
+
   async function signInUser(user) {
     try {
       const res = await api.signInUser(user);
       localStorage.setItem("jwt", res.token);
       const currentUser = auth.getUser(res.token);
       handleUserChange(currentUser);
-      console.log(currentUser);
+      location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -158,6 +181,17 @@ export default function App() {
     setIsConfimDeleteOpen(false);
   }
 
+  function ProtectRoute({ children }) {
+    const { currentUser, isLoading } = useContext(CurrentUserContext);
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }
+    if (!currentUser && !isLoading) {
+      return <Navigate to="/" replace />;
+    }
+    return children;
+  }
+
   return (
     <BrowserRouter>
       {/* <CurrentUserContext.Provider value={{ handleSignIn, currentProfile }}> */}
@@ -178,17 +212,22 @@ export default function App() {
             <Route
               path="/profile"
               element={
-                <Profile
-                  currentCards={currentCards}
-                  setCurrentCards={setCurrentCards}
-                  openItemModal={openItemModal}
-                  openAddClothesModal={openAddClothesModal}
-                  closeAllModals={closeAllModals}
-                  handleAddItem={handleAddItem}
-                  deleteFunction={deleteConfirm}
-                  selectedItem={selectedItem}
-                  isAddClothesOpen={isAddClothesOpen}
-                />
+                <ProtectRoute>
+                  <Profile
+                    currentCards={currentCards}
+                    setCurrentCards={setCurrentCards}
+                    openItemModal={openItemModal}
+                    openAddClothesModal={openAddClothesModal}
+                    closeAllModals={closeAllModals}
+                    handleAddItem={handleAddItem}
+                    deleteFunction={deleteConfirm}
+                    selectedItem={selectedItem}
+                    isAddClothesOpen={isAddClothesOpen}
+                    isLogOutConfirmOpen={isLogOutConfirmOpen}
+                    openLogOutModal={openLogOutModal}
+                    logOutUser={logOutUser}
+                  />
+                </ProtectRoute>
               }
             />
 
@@ -207,11 +246,23 @@ export default function App() {
 
           <Footer />
 
+          <EditProfileModal
+            isOpen={isEditProfileOpen}
+            closeAllModals={closeAllModals}
+            submitForm={handleProfilePatch}
+          />
+
+          <ConfirmLogOutModal
+            isOpen={isLogOutConfirmOpen}
+            closeAllModals={closeAllModals}
+            logOut={logOutUser}
+          />
+
           <AddItemModal
             isOpen={isAddClothesOpen}
             onAddItem={handleAddItem}
             closeAllModals={closeAllModals}
-          ></AddItemModal>
+          />
 
           <ItemModal
             item={selectedItem}

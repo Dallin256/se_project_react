@@ -4,13 +4,13 @@ import ModalWithForm from "./ModalWithForm";
 export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
   const { values, handleChange, handleReset } = useForm({
     name: "",
-    url: "",
-    tempType: "",
+    weather: "",
+    imageUrl: "",
   });
 
   const addCard = (e) => {
     e.preventDefault();
-    const newCard = { _id: Date.now().toString(), ...values };
+    const newCard = { ...values };
     onAddItem(newCard).then(handleReset()).catch(console.error);
   };
   return (
@@ -36,7 +36,7 @@ export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
       <label className="popup__input-label">
         Image
         <input
-          name="url"
+          name="imageUrl"
           type="url"
           placeholder="Image URL"
           value={values.url}
@@ -49,10 +49,10 @@ export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
         {["Hot", "Warm", "Cold"].map((temp) => (
           <label key={temp} className="popup__list-label">
             <input
-              name="tempType"
+              name="weather"
               type="radio"
               value={temp.toLowerCase()}
-              checked={values.tempType === temp.toLowerCase()}
+              checked={values.weather === temp.toLowerCase()}
               onChange={handleChange}
               className="popup__list"
               required

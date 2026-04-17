@@ -10,7 +10,7 @@ export default function ItemCard({ item, clickCard }) {
         clickCard(item);
       }}
     >
-      <img className="ItemCard__img" alt={item.name} src={item.url} />
+      <img className="ItemCard__img" alt={item.name} src={item.imageUrl} />
       <div className="ItemCard__title-box">
         <p className="ItemCard__title">{item.name}</p>
       </div>

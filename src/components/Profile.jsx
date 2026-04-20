@@ -3,23 +3,29 @@ import ClothesSection from "./ClothesSection";
 import "../blocks/Profile.css";
 import "../blocks/ProfileItemCards.css";
 import "../blocks/Sidebar.css";
-import ConfirmLogOutModal from "./confirmLogOutModal";
 
 function Profile({
   currentCards,
   setCurrentCards,
+  selectedItem,
+
+  isAddClothesOpen,
+
   openItemModal,
   openAddClothesModal,
+  openLogOutModal,
+  openEditProfileModal,
   closeAllModals,
+
   handleAddItem,
   deleteFunction,
-  selectedItem,
-  isAddClothesOpen,
-  openLogOutModal,
 }) {
   return (
     <div className="Profile">
-      <Sidebar openLogOutModal={openLogOutModal} />
+      <Sidebar
+        openLogOutModal={openLogOutModal}
+        openEditProfileModal={openEditProfileModal}
+      />
       <ClothesSection
         currentCards={currentCards}
         setCurrentCards={setCurrentCards}

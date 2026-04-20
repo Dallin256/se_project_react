@@ -17,14 +17,4 @@ export default class Auth {
     }
     return Promise.reject(`SIGN IN ERROR! =>${res.status}`);
   }
-
-  async SignUp() {
-    await fetch(this.JSONUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-  }
 }

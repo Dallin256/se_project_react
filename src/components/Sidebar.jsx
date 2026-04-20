@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-export default function Sidebar({ openLogOutModal }) {
+export default function Sidebar({ openLogOutModal, openEditProfileModal }) {
   const { currentUser, isLoading } = useContext(CurrentUserContext);
   return (
     <div className="sidebar">
@@ -12,10 +12,16 @@ export default function Sidebar({ openLogOutModal }) {
         />
         <p>{currentUser.name}</p>
       </div>
-      <button className="sidebar__button">Change Profile Data</button>
       <button
         onClick={() => {
-          console.log("onClick Fired");
+          openEditProfileModal();
+        }}
+        className="sidebar__button"
+      >
+        Change Profile Data
+      </button>
+      <button
+        onClick={() => {
           openLogOutModal();
         }}
         className="sidebar__button"

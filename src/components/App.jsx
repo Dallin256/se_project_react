@@ -86,6 +86,32 @@ export default function App() {
     checkAuth();
   }, []);
 
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is not currently liked
+    !isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+        api
+          // the first argument is the card's id
+          .addCardLike(id, token)
+          .then((updatedCard) => {
+            setCurrentCards((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item)),
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        api
+          // the first argument is the card's id
+          .removeCardLike(id, token)
+          .then((updatedCard) => {
+            setCurrentCards((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item)),
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
   //modal opening functions
 
   function openSignUpModal() {
@@ -139,7 +165,15 @@ export default function App() {
     }
   }
 
-  function handleProfilePatch(user) {}
+  async function handleProfilePatch(user) {
+    try {
+      const token = localStorage.getItem("jwt");
+      const currentUser = await api.patchUser(user, token);
+      handleUserChange(currentUser);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   async function signInUser(user) {
     try {
@@ -207,6 +241,7 @@ export default function App() {
                     openItemModal={openItemModal}
                     openAddClothesModal={openAddClothesModal}
                     openLogOutModal={openLogOutModal}
+                    openEditProfileModal={openEditProfileModal}
                     handleAddItem={handleAddItem}
                     deleteFunction={deleteConfirm}
                     selectedItem={selectedItem}

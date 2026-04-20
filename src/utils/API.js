@@ -16,7 +16,6 @@ export default class API {
   }
 
   async addCard(card, token) {
-    console.log(card);
     const response = await fetch(this.JSONUrlItems, {
       method: "POST",
       headers: {
@@ -53,6 +52,24 @@ export default class API {
       body: JSON.stringify({ email, password }),
     });
     return this._checkResponse(resp);
+  }
+
+  async addCardLike(id, token) {}
+
+  async patchUser(user, token) {
+    const res = await fetch(`${this.JSONUrlUsers}/me`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(user),
+    });
+
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`USER EDITING ERROR! =>${res.status}`);
   }
 
   async deleteCard(targetCard, token) {

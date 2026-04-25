@@ -19,6 +19,7 @@ function Profile({
 
   handleAddItem,
   deleteFunction,
+  onCardLike,
 }) {
   return (
     <div className="Profile">
@@ -36,6 +37,7 @@ function Profile({
         openItemModal={openItemModal}
         selectedItem={selectedItem}
         isAddClothesOpen={isAddClothesOpen}
+        onCardLike={onCardLike}
       />
     </div>
   );

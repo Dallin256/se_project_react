@@ -10,6 +10,7 @@ export default function Main({
   currentTemp,
   cards,
   openItemModal,
+  onCardLike,
 }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const filteredCards = cards.filter((item) => item.weather === currentFeel);
@@ -41,6 +42,7 @@ export default function Main({
             clickCard={() => {
               openItemModal(item);
             }}
+            onCardLike={onCardLike}
           />
         ))}
       </div>

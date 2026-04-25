@@ -29,6 +29,7 @@ import {
 } from "../utils/constants.js";
 
 import { fetchCards } from "../utils/globalFunctions.js";
+import "../blocks/ItemCard.css";
 
 //app function
 export default function App() {
@@ -249,6 +250,7 @@ export default function App() {
                     isLogOutConfirmOpen={activeModal === "logOut"}
                     logOutUser={logOutUser}
                     closeAllModals={closeAllModals}
+                    onCardLike={handleCardLike}
                   />
                 </ProtectRoute>
               }
@@ -262,6 +264,7 @@ export default function App() {
                   currentTemp={currentTemp || [null, null]}
                   cards={currentCards}
                   openItemModal={openItemModal}
+                  onCardLike={handleCardLike}
                 />
               }
             />

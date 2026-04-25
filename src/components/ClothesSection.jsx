@@ -7,6 +7,7 @@ export default function ClothesSection({
   currentCards,
   openItemModal,
   openAddClothesModal,
+  onCardLike,
 }) {
   return (
     <>
@@ -30,6 +31,7 @@ export default function ClothesSection({
               clickCard={() => {
                 openItemModal(item);
               }}
+              onCardLike={onCardLike}
             />
           ))}
         </div>

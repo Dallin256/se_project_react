@@ -54,7 +54,27 @@ export default class API {
     return this._checkResponse(resp);
   }
 
-  async addCardLike(id, token) {}
+  async addCardLike(id, token) {
+    const resp = await fetch(`${this.JSONUrlItems}/${id}/likes`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    });
+    return this._checkResponse(resp);
+  }
+
+  async removeCardLike(id, token) {
+    const resp = await fetch(`${this.JSONUrlItems}/${id}/likes`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    });
+    return this._checkResponse(resp);
+  }
 
   async patchUser(user, token) {
     const res = await fetch(`${this.JSONUrlUsers}/me`, {

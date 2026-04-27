@@ -11,7 +11,7 @@ export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
   const addCard = (e) => {
     e.preventDefault();
     const newCard = { ...values };
-    onAddItem(newCard).then(handleReset()).catch(console.error);
+    onAddItem(newCard).then(handleReset).catch(console.error);
   };
   return (
     <ModalWithForm
@@ -39,7 +39,7 @@ export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
           name="imageUrl"
           type="url"
           placeholder="Image URL"
-          value={values.url}
+          value={values.imageUrl}
           onChange={handleChange}
           className="popup__input popup__input-text"
           required

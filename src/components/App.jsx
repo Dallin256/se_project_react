@@ -1,5 +1,5 @@
 // react imports
-import { useState, useEffect, useContext, act } from "react";
+import { useState, useEffect, useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 //component imports

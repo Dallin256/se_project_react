@@ -37,8 +37,7 @@ export default function ModalWithForm({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            submitForm(e);
-            closeAllModals();
+            submitForm(e).then(closeAllModals()).catch(console.error());
           }}
           className="popup__body"
         >

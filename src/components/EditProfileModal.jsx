@@ -10,14 +10,14 @@ export default function EditProfileModal({
 }) {
   const popupRef = useRef(null);
   const { values, handleChange, handleReset } = useForm({
-    name: "",
-    avatar: "",
+    name: `${values.name}`,
+    avatar: `${values.avatar}`,
   });
 
   const handlePatchuser = (e) => {
     e.preventDefault();
     const patchedUser = { ...values };
-    submitForm(patchedUser).then(handleReset()).catch(console.error);
+    submitForm(patchedUser).then(handleReset).catch(console.error);
   };
   return (
     <div

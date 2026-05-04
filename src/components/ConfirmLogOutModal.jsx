@@ -10,7 +10,7 @@ export default function ConfirmLogOutModal({ isOpen, closeAllModals, logOut }) {
       }}
       className={`popup ${isOpen ? "popup_opened" : ""}`}
     >
-      <div id="Log Out Modal" className="confirmLogOut">
+      <div id="LogOutModal" className="confirmLogOut">
         <p className="confirmLogOut__title">
           Are you sure you want to log out?
         </p>

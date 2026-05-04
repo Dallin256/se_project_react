@@ -13,7 +13,7 @@ import AddItemModal from "./AddItemModal.jsx";
 import SignInModal from "./SignInModal";
 import SignUpModal from "./SignUpModal";
 import ConfirmLogOutModal from "./confirmLogOutModal.jsx";
-import EditProfileModal from "./editProfileModal.jsx";
+import EditProfileModal from "./EditProfileModal.jsx";
 
 //context
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext.js";
@@ -153,6 +153,7 @@ export default function App() {
   }
 
   function logOutUser() {
+    localStorage.removeItem("jwt");
     handleUserChange(null);
   }
 
@@ -189,8 +190,8 @@ export default function App() {
 
   async function registerNewUser(user) {
     const token = localStorage.getItem("jwt");
-    api.addUser(user, token).catch(console.error);
-    api.signInUser(user, token).catch(console.error);
+    await api.addUser(user, token).catch(console.error);
+    await api.signInUser(user, token).catch(console.error);
   }
 
   //deletes the selected card from the server database and rerenders the cards
@@ -305,14 +306,18 @@ export default function App() {
           />
 
           <SignUpModal
-            altOpen={activeModal === "signIn"}
+            altOpen={() => {
+              activeModal === "signIn";
+            }}
             isOpen={activeModal === "signUp"}
             submitForm={registerNewUser}
             closeAllModals={closeAllModals}
           />
 
           <SignInModal
-            altOpen={activeModal === "signUp"}
+            altOpen={() => {
+              activeModal === "signUp";
+            }}
             isOpen={activeModal === "signIn"}
             closeAllModals={closeAllModals}
             submitForm={signInUser}

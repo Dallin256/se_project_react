@@ -1,4 +1,6 @@
 import "../blocks/popup.css";
+import { useContext } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function ItemModal({
   item,
@@ -6,6 +8,17 @@ export default function ItemModal({
   closeAllModals,
   deleteConfirm,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+  const deleteButton = currentUser ? (
+    <button
+      onClick={() => {
+        deleteConfirm(item);
+      }}
+      className="popup__itemCard-delete"
+    >
+      Delete Item
+    </button>
+  ) : null;
   return (
     <div className={`popup ${isOpen ? "popup_opened" : ""}`}>
       {item && (
@@ -21,14 +34,7 @@ export default function ItemModal({
           />
           <p className="popup__itemCard-title">{item.name}</p>
           <p className="popup__itemCard-feel">Weather: {item.weather}</p>
-          <button
-            onClick={() => {
-              deleteConfirm(item);
-            }}
-            className="popup__itemCard-delete"
-          >
-            Delete Item
-          </button>
+          {deleteButton}
         </div>
       )}
     </div>

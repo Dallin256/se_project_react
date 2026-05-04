@@ -16,7 +16,6 @@ export default function DeleteConfirmModal({
           closeAllModals();
         }
       }}
-      id=""
       className={`popup ${isOpen ? "popup_opened" : ""}`}
       ref={popupRef}
     >

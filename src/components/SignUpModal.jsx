@@ -17,7 +17,7 @@ export default function SignUpModal({
   const registerNewUser = (e) => {
     e.preventDefault();
     const newUser = { _id: Date.now().toString(), ...values };
-    submitForm(newUser).then(handleReset()).catch(console.error);
+    submitForm(newUser).then(handleReset).catch(console.error);
   };
   const popupRef = useRef(null);
   return (
@@ -45,8 +45,7 @@ export default function SignUpModal({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            registerNewUser(e);
-            closeAllModals();
+            registerNewUser(e).then(closeAllModals()).catch(console.error);
           }}
           className="popup__body"
         >

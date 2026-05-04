@@ -1,7 +1,4 @@
-import AddItemModal from "./AddItemModal";
 import ItemCard from "./ItemCard";
-
-import ItemModal from "./ItemModal";
 
 export default function ClothesSection({
   currentCards,

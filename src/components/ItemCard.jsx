@@ -15,7 +15,6 @@ export default function ItemCard({ item, clickCard, onCardLike }) {
   }
   const likeButton = currentUser ? (
     <button
-      id="likeButton"
       onClick={() => {
         handleLike();
       }}

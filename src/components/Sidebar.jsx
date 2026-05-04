@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 export default function Sidebar({ openLogOutModal, openEditProfileModal }) {
-  const { currentUser, isLoading } = useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
   return (
     <div className="sidebar">
       <div className="sidebar__header">

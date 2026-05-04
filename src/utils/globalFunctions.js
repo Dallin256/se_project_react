@@ -3,11 +3,9 @@ import { JSONUrl } from "./constants";
 const itemCards = JSONUrl.concat("items");
 
 async function fetchCards() {
-  const resp = await fetch(itemCards);
-  if (!resp.ok) {
-    console.error("Card Fetching Error!!!!!");
-  }
-  return resp.json();
+  return fetch(itemCards).then((res) =>
+    res.ok ? res.json() : Promise.reject(`ERROR: ${res.status}`),
+  );
 }
 
 function openOther(altOpen, closeAllModals) {

@@ -8,7 +8,7 @@ export default function SignInModal({
   closeAllModals,
   submitForm,
 }) {
-  const { values, handleChange, handleReset } = useForm({
+  const { values, handleChange } = useForm({
     email: "",
     password: "",
   });

@@ -22,10 +22,6 @@ function fetchCurrentFeel() {
 
 function fetchCurrentLoc() {
   return apiWeather.getLoc();
-
-  function addCard() {
-    console.log("card add");
-  }
 }
 
 export {

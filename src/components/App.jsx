@@ -29,6 +29,8 @@ import {
 } from "../utils/constants.js";
 
 import { fetchCards } from "../utils/globalFunctions.js";
+
+//blocks
 import "../blocks/ItemCard.css";
 
 //app function

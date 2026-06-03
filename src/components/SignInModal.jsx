@@ -1,6 +1,7 @@
 import useForm from "../hooks/useForm";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { openOther } from "../utils/globalFunctions";
+import ModalWithForm from "./ModalWithForm";
 
 export default function SignInModal({
   altOpen,
@@ -8,7 +9,7 @@ export default function SignInModal({
   closeAllModals,
   submitForm,
 }) {
-  const { values, handleChange } = useForm({
+  const { values, handleChange, handleReset } = useForm({
     email: "",
     password: "",
   });
@@ -18,77 +19,57 @@ export default function SignInModal({
     const user = { ...values };
     submitForm(user);
   };
-  return (
-    <div
-      onClick={(e) => {
-        if (e.target == popupRef.current) {
-          closeAllModals(isOpen);
-        }
+  const secondaryButton = (
+    <button
+      onClick={() => {
+        openOther(altOpen, closeAllModals);
       }}
-      id="signIn"
-      className={`popup ${isOpen ? "popup_opened" : ""}`}
-      ref={popupRef}
+      className="popup__alternateButton"
     >
-      <div className="popup__block popup__block-signIn">
-        <div className="popup__header">
-          <p className="popup__title">Log In</p>
-          <button
-            onClick={() => {
-              closeAllModals();
-            }}
-            className="popup__close-button"
-          ></button>
-        </div>
+      or Sign Up
+    </button>
+  );
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            signIn(e);
-            closeAllModals();
-          }}
-          className="popup__body"
-        >
-          <label className="popup__input-label">
-            Email
-            <input
-              name="email"
-              type="email"
-              value={values.email}
-              onChange={handleChange}
-              placeholder="Email"
-              className="popup__input popup__input-text popup__inputSignUp"
-              required
-            ></input>
-          </label>
+  useEffect(() => {
+    if (isOpen) {
+      handleReset(values.email, values.password);
+    }
+  }, [isOpen]);
 
-          <label className="popup__input-label">
-            Password
-            <input
-              name="password"
-              type="password"
-              value={values.password}
-              onChange={handleChange}
-              placeholder="Password"
-              className="popup__input popup__input-text popup__inputSignUp"
-              required
-            ></input>
-          </label>
-
-          <div>
-            <button type="submit" className="popup__submit">
-              Log in
-            </button>
-            <button
-              onClick={() => {
-                openOther(altOpen, closeAllModals);
-              }}
-              className="popup__alternateButton"
-            >
-              or Sign Up
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+  return (
+    <ModalWithForm
+      isOpen={isOpen}
+      closeAllModals={closeAllModals}
+      titleText={"Sign In"}
+      buttonText={"Log In"}
+      submitForm={signIn}
+      popupClass={"popup__block popup__block-signIn"}
+      secondaryButton={secondaryButton}
+    >
+      <label className="popup__input-label">
+        Email
+        <input
+          name="email"
+          type="email"
+          value={values.email}
+          onChange={handleChange}
+          placeholder="Email"
+          className="popup__input popup__input-text popup__inputSignUp"
+          required
+        ></input>
+      </label>
+      <label className="popup__input-label">
+        Password
+        <input
+          name="password"
+          type="password"
+          value={values.password}
+          onChange={handleChange}
+          placeholder="Password"
+          className="popup__input popup__input-text popup__inputSignUp"
+          required
+        ></input>
+      </label>
+    </ModalWithForm>
   );
 }

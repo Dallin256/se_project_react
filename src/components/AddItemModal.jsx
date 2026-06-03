@@ -1,5 +1,6 @@
 import useForm from "../hooks/useForm";
 import ModalWithForm from "./ModalWithForm";
+import "../blocks/popup.css";
 
 export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
   const { values, handleChange, handleReset } = useForm({
@@ -11,7 +12,12 @@ export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
   const addCard = (e) => {
     e.preventDefault();
     const newCard = { ...values };
-    onAddItem(newCard).then(handleReset).catch(console.error);
+    try {
+      onAddItem(newCard);
+      handleReset;
+    } catch {
+      console.error();
+    }
   };
   return (
     <ModalWithForm
@@ -20,6 +26,7 @@ export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
       titleText={"New Garment"}
       buttonText={"Add Garment"}
       submitForm={addCard}
+      popupClass={"popup__block"}
     >
       <label className="popup__input-label">
         Name

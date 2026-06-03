@@ -8,17 +8,24 @@ export default function ItemModal({
   closeAllModals,
   deleteConfirm,
 }) {
-  const currentUser = useContext(CurrentUserContext);
-  const deleteButton = currentUser ? (
-    <button
-      onClick={() => {
-        deleteConfirm(item);
-      }}
-      className="popup__itemCard-delete"
-    >
-      Delete Item
-    </button>
-  ) : null;
+  const { currentUser } = useContext(CurrentUserContext);
+  let deleteButton = null;
+  if (currentUser && item) {
+    deleteButton =
+      currentUser._id === item.owner ? (
+        <button
+          onClick={() => {
+            deleteConfirm(item);
+          }}
+          className="popup__itemCard-delete"
+        >
+          Delete Item
+        </button>
+      ) : null;
+  } else {
+    deleteButton = null;
+  }
+
   return (
     <div className={`popup ${isOpen ? "popup_opened" : ""}`}>
       {item && (

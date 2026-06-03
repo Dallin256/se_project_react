@@ -1,4 +1,6 @@
 import ItemCard from "./ItemCard";
+import { useContext } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function ClothesSection({
   currentCards,
@@ -6,6 +8,7 @@ export default function ClothesSection({
   openAddClothesModal,
   onCardLike,
 }) {
+  const { currentUser } = useContext(CurrentUserContext);
   return (
     <>
       <div className="ProfileItemCards">
@@ -21,16 +24,18 @@ export default function ClothesSection({
           </button>
         </div>
         <div className="ProfileItemCards__box">
-          {currentCards.map((item) => (
-            <ItemCard
-              key={item._id}
-              item={item}
-              clickCard={() => {
-                openItemModal(item);
-              }}
-              onCardLike={onCardLike}
-            />
-          ))}
+          {currentCards
+            .filter((item) => item.owner === currentUser._id)
+            .map((item) => (
+              <ItemCard
+                key={item._id}
+                item={item}
+                clickCard={() => {
+                  openItemModal(item);
+                }}
+                onCardLike={onCardLike}
+              />
+            ))}
         </div>
       </div>
     </>

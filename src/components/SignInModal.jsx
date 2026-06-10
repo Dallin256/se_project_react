@@ -33,7 +33,7 @@ export default function SignInModal({
 
   useEffect(() => {
     if (isOpen) {
-      handleReset(values.email, values.password);
+      handleReset();
     }
   }, [isOpen]);
 

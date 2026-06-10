@@ -191,9 +191,8 @@ export default function App() {
   }
 
   async function registerNewUser(user) {
-    const token = localStorage.getItem("jwt");
-    await api.addUser(user, token).catch(console.error);
-    await api.signInUser(user, token).catch(console.error);
+    await api.addUser(user).catch(console.error);
+    await signInUser(user).catch(console.error);
   }
 
   //deletes the selected card from the server database and rerenders the cards

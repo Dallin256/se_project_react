@@ -19,7 +19,7 @@ export default function EditProfileModal({
 
   useEffect(() => {
     if (isOpen) {
-      handleReset(currentUser.name, currentUser.avatar);
+      handleReset();
     }
   }, [isOpen]);
 

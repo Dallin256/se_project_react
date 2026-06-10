@@ -21,6 +21,7 @@ export default function SignInModal({
   };
   const secondaryButton = (
     <button
+      type="button"
       onClick={() => {
         openOther(altOpen, closeAllModals);
       }}

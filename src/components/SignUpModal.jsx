@@ -23,6 +23,7 @@ export default function SignUpModal({
   const popupRef = useRef(null);
   const secondaryButton = (
     <button
+      type="button"
       onClick={() => {
         openOther(altOpen, closeAllModals);
       }}

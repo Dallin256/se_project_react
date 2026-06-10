@@ -308,7 +308,7 @@ export default function App() {
 
           <SignUpModal
             altOpen={() => {
-              activeModal === "signIn";
+              setActiveModal("signIn");
             }}
             isOpen={activeModal === "signUp"}
             submitForm={registerNewUser}
@@ -317,7 +317,7 @@ export default function App() {
 
           <SignInModal
             altOpen={() => {
-              activeModal === "signUp";
+              setActiveModal("signUp");
             }}
             isOpen={activeModal === "signIn"}
             closeAllModals={closeAllModals}

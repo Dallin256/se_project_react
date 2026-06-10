@@ -1,5 +1,6 @@
 import useForm from "../hooks/useForm";
 import ModalWithForm from "./ModalWithForm";
+import { useEffect } from "react";
 import "../blocks/popup.css";
 
 export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
@@ -14,11 +15,17 @@ export default function AddItemModal({ isOpen, onAddItem, closeAllModals }) {
     const newCard = { ...values };
     try {
       onAddItem(newCard);
-      handleReset;
     } catch {
       console.error();
     }
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      handleReset();
+    }
+  }, [isOpen]);
+
   return (
     <ModalWithForm
       isOpen={isOpen}

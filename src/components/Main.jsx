@@ -27,6 +27,7 @@ export default function Main({
       console.error();
     }
   };
+
   const temp = getTemp();
   return (
     <div className="main">

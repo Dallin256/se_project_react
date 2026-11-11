@@ -6,7 +6,10 @@ const defaultCoord = {
   lon: -80.3871,
   lat: 33.8884,
 };
-const JSONUrl = "http://localhost:3001/";
+const JSONUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.closetsunshine.crabdance.com"
+    : "http://localhost:3001";
 
 const api = new Api(JSONUrl);
 const auth = new Auth(JSONUrl);

@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "homepage": "closetsunshine.crabdance.com",
+  "homepage": "closetsunshine.wxnw.nwt",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "npm run build && scp -r ./dist/* dalekdallin256@34.75.35.92:/home/dalekdallin256/frontend",

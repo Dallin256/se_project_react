@@ -9,7 +9,7 @@ const defaultCoord = {
 const JSONUrl =
   process.env.NODE_ENV === "production"
     ? "https://api.closetsunshine.wxnw.net"
-    : "http://localhost:3001";
+    : "http://localhost:3001/";
 
 const api = new Api(JSONUrl);
 const auth = new Auth(JSONUrl);
